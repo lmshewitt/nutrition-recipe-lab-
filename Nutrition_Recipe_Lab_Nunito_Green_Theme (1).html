@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Nutrition & Recipe Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#7DA86C;--pink-dark:#527A45;--pink-deep:#35532D;--pink-light:#E8F0E3;--pink-pale:#F4F8F1;--navy:#35532D;--teal:#668F58;--mint:#E8F0E3;--gold:#B7CFAE;--ink:#2F3B2C;--muted:#65735F;--paper:#fff;--line:#D6E3CF;--bg:#F7FAF5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Nunito",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#35532D,#7DA86C);color:white;padding:30px 20px}
+.wrap{max-width:1100px;margin:auto;padding:0 18px}h1{margin:0 0 8px;font-size:clamp(1.8rem,4vw,2.6rem)}header p{max-width:760px;margin:0;color:#F4F8F1}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:20px auto 0}.tab{border:1px solid #C4D7BB;background:white;color:var(--pink-deep);border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer}.tab[aria-selected=true]{background:var(--pink);border-color:var(--pink);color:white}
+main{max-width:1100px;margin:22px auto;padding:0 18px 50px}.panel{display:none}.panel.active{display:block}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 16px;box-shadow:0 3px 12px #35532D0D}
+h2{color:var(--pink-deep);margin:0 0 12px}h3{margin:0 0 8px;color:var(--pink-dark)}p{margin:7px 0 12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+label{display:block;font-weight:650;margin:8px 0 5px}input,select,textarea{width:100%;padding:10px 11px;border:1px solid #b8c7cc;border-radius:9px;font:inherit;background:white;color:var(--ink)}textarea{min-height:90px;resize:vertical}
+button.action{border:0;border-radius:9px;padding:10px 15px;background:var(--pink);color:white;font-weight:700;cursor:pointer;margin:8px 6px 0 0}button.secondary{background:var(--pink-light);color:var(--pink-deep)}button:focus,input:focus,select:focus,textarea:focus{outline:3px solid #A9C69D;outline-offset:2px}
+.small{font-size:.9rem;color:var(--muted)}.notice{background:var(--pink-pale);border-left:4px solid var(--pink);padding:12px 14px;border-radius:8px}.success{background:var(--pink-light);padding:12px;border-radius:9px}
+table{width:100%;border-collapse:collapse;margin-top:10px}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line)}th{color:var(--pink-deep);background:var(--pink-pale)}.nutrients{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:9px}.metric{background:var(--pink-pale);border-radius:10px;padding:12px}.metric strong{display:block;font-size:1.25rem;color:var(--pink-dark)}.bar{height:10px;background:#e5ecec;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;background:var(--pink)}
+.pill{display:inline-block;background:var(--pink-light);color:var(--pink-deep);padding:3px 9px;border-radius:99px;font-size:.82rem;font-weight:700;margin:2px}
+.quizq{padding:12px 0;border-bottom:1px solid var(--line)}.quizq label{font-weight:400}.prep-options{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:4px 12px}.prep-options legend{font-weight:700;color:var(--pink-deep);padding:0 5px}.prep-options label{display:flex;align-items:center;gap:8px;font-weight:400;margin:4px 0}.prep-options input{width:auto;margin:0;accent-color:var(--pink)}.foodtile{border:1px solid var(--line);border-radius:12px;padding:14px}.foodtile h3{font-size:1.05rem}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:.9rem}
+@media print{header,nav,.no-print,footer{display:none!important}body{background:white}.panel{display:none!important}#recipe.active{display:block!important}.card{box-shadow:none;break-inside:avoid}}
+
+.plateGraphic{width:min(100%,270px);aspect-ratio:1;border-radius:50%;margin:8px auto 14px;border:10px solid #fff;box-shadow:0 2px 12px #35532D20;position:relative;background:conic-gradient(#4b9865 0deg 0deg,#e8eeee 0deg 108deg,#d96f55 108deg 108deg,#e8eeee 108deg 180deg,#d7a84b 180deg 180deg,#e8eeee 180deg 270deg,#528bb4 270deg 270deg,#e8eeee 270deg 360deg);transition:background .65s ease}
+.plateCenter{position:absolute;inset:28%;z-index:2;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 1px 5px #17324d20;color:var(--pink-deep);pointer-events:none}.plateCenter span{font-size:.85rem;color:var(--muted)}.plateHotspots{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible}.plateHotspots path{fill:transparent;stroke:transparent;stroke-width:3;cursor:pointer;pointer-events:all;outline:none}.plateHotspots path:hover,.plateHotspots path:focus{fill:#ffffff30;stroke:#35532D;stroke-dasharray:5 4}.plateDetails{min-height:76px;margin:0 auto 14px;max-width:420px;background:var(--pink-pale);border:1px solid var(--line);border-radius:10px;padding:11px 13px}.plateDetails ul{margin:5px 0 0;padding-left:20px}.plateDetails p{margin:3px 0}
+.groupProgress{margin:12px 0}.groupProgress>div:first-child{display:flex;justify-content:space-between;gap:8px;margin-bottom:5px}.groupProgress span{font-size:.9rem;color:var(--muted)}.groupProgress .bar span{transition:width .55s ease}.dishrow{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.dishrow:last-child{border-bottom:0}
+@media(max-width:620px){.plateGraphic{width:min(78vw,250px)}}
+
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Student Nutrition &amp; Recipe Lab</h1>
+<p>Explore what food provides, investigate a recipe, and discover how preparation and cooking methods can affect the foods we eat.</p>
+</div></header>
+<div class="wrap"><nav aria-label="Learning activities">
+<button class="tab" aria-selected="true" data-tab="recipe">1. Recipe Investigator</button>
+<button class="tab" aria-selected="false" data-tab="plate">2. Build a Balanced Plate</button>
+<button class="tab" aria-selected="false" data-tab="learn">3. Nutrition Discovery &amp; Cooking Methods</button>
+</nav></div>
+<main>
+<section id="recipe" class="panel active">
+<div class="card">
+<h2>Recipe Investigator</h2>
+<p>Build a simple recipe and estimate its nutrition. Choose an ingredient, enter an amount, and select a measurement. Volume-to-weight conversions are estimates and vary by ingredient.</p>
+<div class="grid">
+<div><label for="recipeName">Recipe name</label><input id="recipeName" value="My recipe" maxlength="80"></div>
+<div><label for="servings">Number of servings</label><input id="servings" type="number" min="1" max="100" value="4"></div>
+</div>
+<div class="grid" style="align-items:end">
+<div><label for="food">Ingredient</label><select id="food">
+<option value="oats">Rolled oats</option><option value="rice">Cooked white rice</option><option value="pasta">Cooked pasta</option><option value="chicken">Cooked chicken breast</option><option value="egg">Whole egg</option><option value="milk">2% milk</option><option value="yogurt">Plain Greek yogurt</option><option value="cheddar">Cheddar cheese</option><option value="mozzarella">Mozzarella cheese (part-skim)</option><option value="beans">Cooked black beans</option><option value="chickpeas">Garbanzo beans (cooked)</option><option value="breadcrumbs">Bread crumbs</option><option value="parmesan">Parmesan cheese (grated)</option><option value="flour">All-purpose flour</option><option value="sugar">Granulated sugar</option><option value="brownsugar">Brown sugar (packed)</option><option value="cocoa">Unsweetened cocoa powder</option><option value="chocolatechips">Semi-sweet chocolate chips</option><option value="wonton">Wonton wrappers</option><option value="groundbeef">Ground beef (85% lean, cooked)</option><option value="groundturkey">Ground turkey (93% lean, cooked)</option><option value="sausage">Ground pork sausage (cooked)</option><option value="apple">Apple</option><option value="banana">Banana</option><option value="mango">Mango</option><option value="pineapple">Pineapple</option><option value="peach">Peaches</option><option value="strawberry">Strawberries</option><option value="blueberry">Blueberries</option><option value="blackberry">Blackberries</option><option value="raspberry">Raspberries</option><option value="broccoli">Broccoli</option><option value="spinach">Spinach</option><option value="carrot">Carrot</option><option value="tomato">Tomato</option><option value="cabbage">Cabbage</option><option value="zucchini">Zucchini</option><option value="greenonion">Green onions</option><option value="ginger">Fresh ginger</option><option value="lemonjuice">Lemon juice</option><option value="soy">Soy sauce</option><option value="honey">Honey</option><option value="maplesyrup">Maple syrup</option><option value="mirin">Mirin</option><option value="ricevinegar">Rice vinegar</option><option value="avocado">Avocado</option><option value="oliveoil">Olive oil</option><option value="vegetableoil">Vegetable oil</option><option value="sesameoil">Sesame oil</option><option value="butter">Butter</option><option value="bread">Whole-wheat bread</option><option value="almonds">Almonds</option><option value="walnuts">Walnuts</option>
+</select></div>
+<div><label for="amount">Amount</label><input id="amount" type="number" min="0.01" step="0.01" value="1"></div>
+<div><label for="unit">Measurement</label><select id="unit"><option value="tsp">Teaspoons (tsp)</option><option value="tbsp">Tablespoons (tbsp)</option><option value="cup" selected>Cups</option><option value="oz">Ounces (weight)</option><option value="floz">Fluid ounces (volume)</option><option value="g">Grams (g)</option></select></div>
+<div><button class="action" id="add">Add ingredient</button></div>
+</div>
+<div id="ingredientList"><p class="small">No ingredients added yet.</p></div>
+<button class="action" id="calculate">Calculate recipe</button><button class="action secondary" id="clear">Clear ingredients</button>
+<div id="results" aria-live="polite"></div>
+</div>
+<div class="card">
+<h3>Think like a food scientist</h3>
+<label for="reflection1">Which ingredient contributes the most protein? How can you tell?</label><textarea id="reflection1" placeholder="Write your evidence..."></textarea>
+<label for="reflection2">What is one way you could add a fruit or vegetable to this recipe?</label><textarea id="reflection2" placeholder="Explain your idea..."></textarea>
+<button class="action secondary no-print" onclick="window.print()">Print recipe report</button>
+<p class="small">Nutrition values are classroom estimates from a small reference list, not laboratory measurements or medical advice. Actual values vary by brand, recipe, and preparation. Some reference values represent ingredients in a prepared form, while others represent ingredients as sold. Cups, teaspoons, tablespoons, and fluid ounces are converted using approximate ingredient-specific weights; ounces means weight, while fluid ounces means volume. For best accuracy, use grams or ounces by weight.</p>
+</div>
+</section>
+
+<section id="plate" class="panel">
+<div class="card">
+<h2>Build a Balanced Plate</h2>
+<p>Calculate a recipe in Recipe Investigator, then add a serving here. Add servings from several recipes to build a meal and see how the food groups add up.</p>
+<div class="notice"><b>About the plate model:</b> This is an educational adaptation of the Harvard Healthy Eating Plate: about half the plate is vegetables and fruits (with more vegetables than fruit), one quarter whole grains, and one quarter healthy protein. The 30/20/25/25 split below is a classroom visualization target—not a medical prescription or a daily nutrient requirement.</div>
+<div class="grid" style="align-items:center;margin-top:18px">
+<div>
+<div id="plateGraphic" class="plateGraphic" role="group" aria-label="Interactive balanced plate. Hover over or focus a food group to see its contributing ingredients."><svg id="plateHotspots" class="plateHotspots" viewBox="0 0 270 270" aria-hidden="false"></svg><div class="plateCenter"><b>Your meal</b><span id="platePercent">0% filled</span></div></div>
+<div id="plateDetails" class="plateDetails" aria-live="polite"><b>Explore your plate</b><p class="small">Hover over a colored section, or use Tab to focus it, to see which ingredients contribute to that food group.</p></div>
+<p class="small">Each colored section grows as foods from that group are added. The pale part shows what is still missing from the visual target.</p>
+</div>
+<div>
+<div class="groupProgress"><div><b>Vegetables</b><span id="vegLabel">0 / 150 g</span></div><div class="bar"><span id="vegBar"></span></div></div>
+<div class="groupProgress"><div><b>Fruit</b><span id="fruitLabel">0 / 100 g</span></div><div class="bar"><span id="fruitBar"></span></div></div>
+<div class="groupProgress"><div><b>Whole grains</b><span id="grainLabel">0 / 75 g</span></div><div class="bar"><span id="grainBar"></span></div></div>
+<div class="groupProgress"><div><b>Healthy protein</b><span id="proteinLabel">0 / 85 g</span></div><div class="bar"><span id="proteinBar"></span></div></div>
+<p class="small">Targets are approximate classroom serving-weight equivalents used to animate the plate. Real portions vary by food, recipe, and preparation.</p>
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Add a prepared dish</h2>
+<p>First calculate a recipe in the Recipe Investigator. Then return here and add one or more servings of that recipe.</p>
+<div id="currentRecipeStatus" class="notice">No calculated recipe is ready yet. Go to Recipe Investigator and select “Calculate recipe.”</div>
+<div class="grid" style="align-items:end">
+<div><label for="plateServings">Servings to add</label><input id="plateServings" type="number" min="0.25" max="20" step="0.25" value="1"></div>
+<div><button class="action" id="addDishToPlate">Add calculated recipe to meal</button></div>
+</div>
+<div id="mealDishes"><p class="small">No dishes added yet.</p></div>
+<button class="action secondary" id="clearMeal">Clear meal</button>
+</div>
+<div class="card">
+<h2>Meal nutrition snapshot</h2>
+<p>These totals combine the macro values from the recipes you added. They are estimates based on the current classroom ingredient database.</p>
+<div class="nutrients" id="mealMacros">
+<div class="metric"><span>Calories</span><strong>0</strong><small>kcal</small></div><div class="metric"><span>Protein</span><strong>0 g</strong><small>total</small></div><div class="metric"><span>Carbohydrates</span><strong>0 g</strong><small>total</small></div><div class="metric"><span>Total fat</span><strong>0 g</strong><small>total</small></div><div class="metric"><span>Fiber</span><strong>0 g</strong><small>total</small></div><div class="metric"><span>Sodium</span><strong>0 mg</strong><small>total</small></div>
+</div>
+<div class="notice" style="margin-top:14px"><b>Micronutrients are the next data upgrade.</b> The current ingredient table calculates calories, protein, carbohydrates, fat, fiber, sugars, and sodium. It does not yet contain a complete, source-checked vitamin and mineral profile, so this version will not invent those values. The next build will add selected vitamins and minerals from USDA FoodData Central.</div>
+<h3 style="margin-top:18px">What could improve this meal?</h3>
+<div id="plateSuggestions" class="success">Add a recipe to see suggestions for balancing the food groups.</div>
+</div>
+</section>
+
+<section id="learn" class="panel">
+<div class="card"><h2>Nutrition Discovery</h2><p>Nutrients are substances in food that help the body grow, repair, move, and function.</p>
+<div class="grid">
+<div class="foodtile"><h3>Macronutrients</h3><p>Needed in relatively large amounts.</p><span class="pill">Carbohydrates</span><span class="pill">Protein</span><span class="pill">Fat</span>
+<ul><li><b>Carbohydrates:</b> the body's main energy source. Found in grains, fruit, milk, beans, and starchy vegetables.</li><li><b>Protein:</b> helps build and repair muscles and other body tissues. Found in beans, eggs, dairy, fish, meat, nuts, and seeds.</li><li><b>Fat:</b> provides energy, helps absorb vitamins A, D, E, and K, and supports cells. Found in oils, nuts, seeds, avocado, and dairy.</li></ul></div>
+<div class="foodtile"><h3>Micronutrients</h3><p>Vitamins and minerals are needed in smaller amounts, but they are essential.</p><ul><li><b>Vitamin C:</b> supports healing and helps the body absorb iron.</li><li><b>Vitamin A:</b> supports vision and immune function.</li><li><b>Calcium:</b> supports strong bones and teeth.</li><li><b>Iron:</b> helps red blood cells carry oxygen.</li><li><b>Potassium:</b> helps nerves and muscles work.</li></ul></div>
+<div class="foodtile"><h3>Other important parts of food</h3><ul><li><b>Water:</b> helps regulate body temperature and move nutrients.</li><li><b>Fiber:</b> supports digestion and helps you feel satisfied. Found in plant foods such as whole grains, beans, fruit, and vegetables.</li></ul></div>
+</div></div>
+<div class="card"><h2>Explore the five food groups</h2><p>Foods can provide nutrients from more than one group. These examples are a guide, not a rule that a food belongs to only one group.</p>
+<div class="grid">
+<div class="foodtile"><h3>Grains</h3><p>Oats, rice, bread, pasta, tortillas.</p><p><b>Often provide:</b> carbohydrates, fiber (especially whole grains), B vitamins, and minerals.</p><p><b>Try:</b> choose whole-grain options often.</p></div>
+<div class="foodtile"><h3>Vegetables</h3><p>Broccoli, carrots, spinach, peppers, peas.</p><p><b>Often provide:</b> fiber, vitamins A and C, folate, and potassium.</p><p><b>Try:</b> include a variety of colors.</p></div>
+<div class="foodtile"><h3>Fruits</h3><p>Apples, bananas, berries, oranges, melon.</p><p><b>Often provide:</b> carbohydrates, fiber, vitamin C, potassium, and other plant compounds.</p><p><b>Try:</b> enjoy whole fruit often.</p></div>
+<div class="foodtile"><h3>Protein foods</h3><p>Beans, lentils, eggs, fish, poultry, nuts, seeds, tofu.</p><p><b>Often provide:</b> protein, iron, zinc, and other nutrients. Nutrients vary by food.</p><p><b>Try:</b> vary protein sources.</p></div>
+<div class="foodtile"><h3>Dairy</h3><p>Milk, yogurt, cheese, and fortified alternatives.</p><p><b>Often provide:</b> calcium, protein, and (when fortified) vitamin D.</p><p><b>Try:</b> check labels on fortified alternatives because nutrients differ.</p></div>
+</div></div>
+<div class="card"><h2>Build a balanced plate</h2>
+<div class="grid" style="align-items:center">
+<div><svg viewBox="0 0 320 230" role="img" aria-label="Plate illustration showing half vegetables and fruit, one quarter grains, and one quarter protein"><circle cx="145" cy="112" r="98" fill="#fff" stroke="#9aaeb5" stroke-width="5"/><path d="M145 112 L145 14 A98 98 0 0 0 145 210 Z" fill="#83bd75"/><path d="M145 112 L145 210 A98 98 0 0 0 243 112 Z" fill="#e9c36b"/><path d="M145 112 L243 112 A98 98 0 0 0 145 14 Z" fill="#d98b67"/><text x="80" y="105" font-size="13" text-anchor="middle" fill="#17324d">Fruit &amp;</text><text x="80" y="122" font-size="13" text-anchor="middle" fill="#17324d">vegetables</text><text x="188" y="68" font-size="13" text-anchor="middle" fill="#17324d">Grains</text><text x="188" y="157" font-size="13" text-anchor="middle" fill="#17324d">Protein</text></svg></div>
+<div><p><b>½ plate:</b> fruits and vegetables</p><p><b>¼ plate:</b> grains, with whole grains often</p><p><b>¼ plate:</b> protein foods</p><p><b>Alongside:</b> dairy or a fortified soy alternative, if included in the eating pattern.</p><p class="small">This is a learning model inspired by the USDA MyPlate approach. Individual needs and cultural food traditions vary.</p></div>
+</div></div>
+<div class="card"><h2>Cooking Methods &amp; Preparation</h2><p>Explore how preparation and cooking methods can change a food’s calories, fat, vitamins, minerals, sodium, and overall nutritional value.</p></div>
+<div class="card" id="methods-content">
+<div class="card"><h2>Cooking Method &amp; Preparation Lab</h2><p>Not every recipe uses heat. For a salad, preparation might include washing, knife skills, measuring, combining, and tossing. For a baked dish, preparation happens first and baking is the cooking method. Select every technique used in the recipe. Then choose a cooking method to see how it may change the food’s nutritional value.</p>
+<div class="grid">
+<fieldset class="prep-options"><legend>Preparation techniques — check all that apply</legend>
+<label><input type="checkbox" name="prep" value="Wash"> Wash</label>
+<label><input type="checkbox" name="prep" value="Knife skill (slice, mince, chop, cube, dice, etc.)"> Knife skill (slice, mince, chop, cube, dice, etc.)</label>
+<label><input type="checkbox" name="prep" value="Shred"> Shred</label>
+<label><input type="checkbox" name="prep" value="Measure"> Measure</label>
+<label><input type="checkbox" name="prep" value="Combine / stir"> Combine / stir</label>
+<label><input type="checkbox" name="prep" value="Dredge"> Dredge</label>
+<label><input type="checkbox" name="prep" value="Cut"> Cut</label>
+<label><input type="checkbox" name="prep" value="Toss"> Toss</label>
+</fieldset>
+<div><label for="method">Cooking method</label><select id="method"><option value="raw">Raw / no heat (salad or assembly)</option><option value="bake">Bake</option><option value="roast">Roast</option><option value="grill">Grill</option><option value="boil">Boil</option><option value="steam">Steam</option><option value="saute">Sauté</option><option value="pan">Pan-fry</option><option value="deep">Deep-fry</option><option value="microwave">Microwave</option><option value="stew">Braise or stew</option></select></div>
+<div><label for="fat">Added cooking fat</label><select id="fat"><option value="none">None</option><option value="little">Small amount (1 tsp–1 Tbsp)</option><option value="some">Moderate amount (¼ cup–1 cup)</option><option value="more">Generous amount (1 cup or more)</option></select></div>
+</div>
+<button class="action" id="analyzeMethod">Explore this method</button><div id="methodResult" aria-live="polite"></div>
+</div>
+</div>
+</section>
+
+
+
+</main>
+<footer>Student Nutrition &amp; Recipe Lab · Classroom learning tool · Estimates are educational, not medical advice.</footer>
+<script>
+const foods={
+oats:{n:"Rolled oats",k:389,p:16.9,c:66.3,f:6.9,fi:10.6,s:0.9,na:2},
+rice:{n:"White rice",k:130,p:2.7,c:28.2,f:.3,fi:.4,s:0.1,na:1},
+pasta:{n:"Pasta",k:158,p:5.8,c:30.9,f:.9,fi:1.8,s:.6,na:1},
+chicken:{n:"Chicken breast",k:165,p:31,c:0,f:3.6,fi:0,s:0,na:74},
+egg:{n:"Whole egg (raw; for baking and recipes)",k:143,p:12.6,c:.7,f:9.5,fi:0,s:.4,na:142},
+scrambledegg:{n:"Scrambled eggs (prepared, without added fat)",k:149,p:10,c:1.6,f:10,fi:0,s:1.6,na:145},
+chickpeas:{n:"Garbanzo beans",k:164,p:8.9,c:27.4,f:2.6,fi:7.6,s:4.8,na:7},
+breadcrumbs:{n:"Bread crumbs",k:395,p:13.4,c:72,f:5.3,fi:4.5,s:6.4,na:732},
+parmesan:{n:"Parmesan cheese (grated)",k:431,p:38,c:4.1,f:29,fi:0,s:.9,na:1529},
+flour:{n:"All-purpose flour",k:364,p:10.3,c:76.3,f:1,fi:2.7,s:.3,na:2},
+sugar:{n:"Granulated sugar",k:387,p:0,c:100,f:0,fi:0,s:100,na:1},
+groundbeef:{n:"Ground beef (85% lean)",k:250,p:26,c:0,f:15,fi:0,s:0,na:75},
+groundturkey:{n:"Ground turkey (93% lean)",k:203,p:27,c:0,f:10,fi:0,s:0,na:90},
+sausage:{n:"Ground pork sausage",k:339,p:19,c:.8,f:28,fi:0,s:.5,na:900},
+mozzarella:{n:"Mozzarella cheese (part-skim)",k:254,p:24.3,c:2.8,f:15.9,fi:0,s:1,na:619},
+brownsugar:{n:"Brown sugar (packed)",k:380,p:0,c:98.1,f:0,fi:0,s:97,na:28},
+cocoa:{n:"Unsweetened cocoa powder",k:228,p:19.6,c:57.9,f:13.7,fi:37,s:1.8,na:21},
+chocolatechips:{n:"Semi-sweet chocolate chips",k:479,p:4.2,c:63.8,f:23.9,fi:7,s:50,na:7},
+wonton:{n:"Wonton wrappers",k:291,p:8.1,c:57.1,f:1.5,fi:2.3,s:1.2,na:700},
+mango:{n:"Mango",k:60,p:.8,c:15,f:.4,fi:1.6,s:13.7,na:1},
+pineapple:{n:"Pineapple",k:50,p:.5,c:13.1,f:.1,fi:1.4,s:9.9,na:1},
+peach:{n:"Peaches",k:39,p:.9,c:9.5,f:.3,fi:1.5,s:8.4,na:0},
+blueberry:{n:"Blueberries",k:57,p:.7,c:14.5,f:.3,fi:2.4,s:10,na:1},
+blackberry:{n:"Blackberries",k:43,p:1.4,c:9.6,f:.5,fi:5.3,s:4.9,na:1},
+raspberry:{n:"Raspberries",k:52,p:1.2,c:11.9,f:.7,fi:6.5,s:4.4,na:1},
+cabbage:{n:"Cabbage",k:25,p:1.3,c:5.8,f:.1,fi:2.5,s:3.2,na:18},
+zucchini:{n:"Zucchini",k:17,p:1.2,c:3.1,f:.3,fi:1,s:2.5,na:8},
+greenonion:{n:"Green onions",k:32,p:1.8,c:7.3,f:.2,fi:2.6,s:2.3,na:16},
+ginger:{n:"Fresh ginger",k:80,p:1.8,c:17.8,f:.8,fi:2,s:1.7,na:13},
+lemonjuice:{n:"Lemon juice",k:22,p:.4,c:6.9,f:.2,fi:.3,s:2.5,na:1},
+soy:{n:"Soy sauce",k:53,p:8.1,c:4.9,f:.6,fi:0,s:.4,na:5493},
+honey:{n:"Honey",k:304,p:.3,c:82.4,f:0,fi:0,s:82.1,na:4},
+maplesyrup:{n:"Maple syrup",k:260,p:0,c:67,f:0,fi:0,s:60.5,na:12},
+mirin:{n:"Mirin",k:241,p:.1,c:43.2,f:0,fi:0,s:38,na:5},
+ricevinegar:{n:"Rice vinegar",k:18,p:0,c:0.04,f:0,fi:0,s:0,na:2},
+vegetableoil:{n:"Vegetable oil",k:884,p:0,c:0,f:100,fi:0,s:0,na:0},
+sesameoil:{n:"Sesame oil",k:884,p:0,c:0,f:100,fi:0,s:0,na:0},
+walnuts:{n:"Walnuts",k:654,p:15.2,c:13.7,f:65.2,fi:6.7,s:2.6,na:2},
+milk:{n:"2% milk",k:50,p:3.3,c:4.8,f:2,fi:0,s:5,na:47},
+yogurt:{n:"Plain Greek yogurt",k:73,p:10,c:3.9,f:1.9,fi:0,s:3.6,na:36},
+cheddar:{n:"Cheddar cheese",k:403,p:24.9,c:1.3,f:33.1,fi:0,s:.5,na:621},
+beans:{n:"Black beans",k:132,p:8.9,c:23.7,f:.5,fi:8.7,s:.3,na:1},
+apple:{n:"Apple",k:52,p:.3,c:13.8,f:.2,fi:2.4,s:10.4,na:1},
+banana:{n:"Banana",k:89,p:1.1,c:22.8,f:.3,fi:2.6,s:12.2,na:1},
+strawberry:{n:"Strawberries",k:32,p:.7,c:7.7,f:.3,fi:2,s:4.9,na:1},
+broccoli:{n:"Broccoli",k:34,p:2.8,c:6.6,f:.4,fi:2.6,s:1.7,na:33},
+spinach:{n:"Spinach",k:23,p:2.9,c:3.6,f:.4,fi:2.2,s:.4,na:79},
+carrot:{n:"Carrot",k:41,p:.9,c:9.6,f:.2,fi:2.8,s:4.7,na:69},
+tomato:{n:"Tomato",k:18,p:.9,c:3.9,f:.2,fi:1.2,s:2.6,na:5},
+avocado:{n:"Avocado",k:160,p:2,c:8.5,f:14.7,fi:6.7,s:.7,na:7},
+oliveoil:{n:"Olive oil",k:884,p:0,c:0,f:100,fi:0,s:0,na:2},
+butter:{n:"Butter",k:717,p:.9,c:.1,f:81.1,fi:0,s:.1,na:11},
+bread:{n:"Whole-wheat bread",k:247,p:13,c:41.3,f:4.2,fi:7,s:6,na:400},
+whitebread:{n:"White bread",k:266,p:8.9,c:49.4,f:3.3,fi:2.7,s:5,na:490},
+hamburgerbun:{n:"Hamburger bun",k:279,p:9.7,c:50.1,f:4.1,fi:2.2,s:7.4,na:477},
+almonds:{n:"Almonds",k:579,p:21.2,c:21.6,f:49.9,fi:12.5,s:4.4,na:1}
+};
+
+// Expanded ingredient library. Values are approximate per 100 g; brands and preparation vary.
+Object.assign(foods,{
+ sunflowerseeds:{n:"Sunflower seeds (shelled)",k:584,p:20.8,c:20,f:51.5,fi:8.6,s:2.6,na:9},
+ chiaseeds:{n:"Chia seeds",k:486,p:16.5,c:42.1,f:30.7,fi:34.4,s:0,na:16},
+ flaxseeds:{n:"Flax seeds",k:534,p:18.3,c:28.9,f:42.2,fi:27.3,s:1.6,na:30},
+ pecans:{n:"Pecans",k:691,p:9.2,c:13.9,f:72,fi:9.6,s:4,na:0},
+ peanuts:{n:"Peanuts",k:567,p:25.8,c:16.1,f:49.2,fi:8.5,s:4,na:18},
+ peanutbutter:{n:"Peanut butter",k:588,p:25,c:20,f:50,fi:6,s:9.2,na:17},
+ cinnamon:{n:"Ground cinnamon",k:247,p:4,c:81,f:1.2,fi:53.1,s:2.2,na:10},
+ pumpkinspice:{n:"Pumpkin pie spice",k:300,p:6,c:70,f:8,fi:30,s:0,na:20},
+ salt:{n:"Table salt",k:0,p:0,c:0,f:0,fi:0,s:0,na:38758},
+ bakingsoda:{n:"Baking soda",k:0,p:0,c:0,f:0,fi:0,s:0,na:27360},
+ bakingpowder:{n:"Baking powder",k:53,p:0,c:27.7,f:0,fi:0,s:0,na:10600},
+ molasses:{n:"Molasses",k:290,p:0,c:74.7,f:0.1,fi:0,s:55,na:37},
+ wholewheatflour:{n:"Whole-wheat flour",k:340,p:13.2,c:72.6,f:2.5,fi:10.7,s:0.4,na:2},
+ corn:{n:"Corn",k:86,p:3.3,c:18.7,f:1.4,fi:2,s:6.3,na:15},
+ jalapeno:{n:"Jalapeño pepper",k:29,p:0.9,c:6.5,f:0.4,fi:2.8,s:4.1,na:3},
+ espressopowder:{n:"Espresso powder",k:350,p:12,c:75,f:1,fi:0,s:0,na:100},
+ margarine:{n:"Margarine",k:717,p:0.2,c:0.7,f:80.7,fi:0,s:0.5,na:600},
+ tortilla:{n:"Flour tortilla",k:312,p:8.3,c:52.1,f:8.3,fi:3.3,s:3.1,na:600},
+ greenpepper:{n:"Green bell pepper",k:20,p:0.9,c:4.6,f:0.2,fi:1.7,s:2.4,na:3},
+ onion:{n:"Onion",k:40,p:1.1,c:9.3,f:0.1,fi:1.7,s:4.2,na:4},
+ garlic:{n:"Garlic",k:149,p:6.4,c:33.1,f:0.5,fi:2.1,s:1,na:17},
+ cornstarch:{n:"Cornstarch",k:381,p:0.3,c:91.3,f:0.1,fi:0.9,s:0,na:9},
+ vanilla:{n:"Vanilla extract",k:288,p:0.1,c:12.7,f:0.1,fi:0,s:12.7,na:9},
+ yeast:{n:"Active dry yeast",k:325,p:40.4,c:41.2,f:7.6,fi:26.9,s:0,na:51},
+ powderedSugar:{n:"Powdered sugar",k:389,p:0,c:99.8,f:0,fi:0,s:97,na:1},
+ raisins:{n:"Raisins",k:299,p:3.1,c:79.2,f:0.5,fi:3.7,s:59.2,na:11},
+ coconut:{n:"Shredded coconut (unsweetened)",k:660,p:6.9,c:23.7,f:64.5,fi:16.3,s:7.4,na:37},
+ tomatoescanned:{n:"Canned diced tomatoes",k:21,p:1,c:4.4,f:0.1,fi:1.1,s:2.8,na:180},
+ tomatopaste:{n:"Tomato paste",k:82,p:4.3,c:18.9,f:0.5,fi:4.1,s:12.2,na:59},
+ chickenbroth:{n:"Chicken broth",k:6,p:0.6,c:0.4,f:0.2,fi:0,s:0.4,na:250},
+ vegetablebroth:{n:"Vegetable broth",k:5,p:0.2,c:0.8,f:0.1,fi:0.1,s:0.3,na:250},
+ mustard:{n:"Yellow mustard",k:60,p:3.7,c:5.8,f:3.3,fi:3.3,s:0.9,na:1100},
+ ketchup:{n:"Ketchup",k:112,p:1.3,c:27.2,f:0.1,fi:0.3,s:22.8,na:907},
+ mayonnaise:{n:"Mayonnaise",k:680,p:1,c:0.6,f:75,fi:0,s:0.6,na:635},
+ blackpepper:{n:"Black pepper",k:251,p:10.4,c:64,f:3.3,fi:25.3,s:0.6,na:20},
+ paprika:{n:"Paprika",k:282,p:14.1,c:53.99,f:12.9,fi:34.9,s:10.3,na:68},
+ cumin:{n:"Ground cumin",k:375,p:17.8,c:44.2,f:22.3,fi:10.5,s:2.3,na:168},
+ oregano:{n:"Dried oregano",k:265,p:9,c:68.9,f:4.3,fi:42.5,s:4.1,na:25},
+ basil:{n:"Dried basil",k:233,p:22.98,c:47.8,f:4.1,fi:37.7,s:1.7,na:76},
+ chiliPowder:{n:"Chili powder",k:282,p:13.5,c:49.7,f:14.3,fi:34.8,s:7.2,na:1640}
+});
+// Correct a few shorthand entries and maintain stable per-100 g macro keys.
+foods.peanutbutter.fi=6;
+foods.espressopowder.fi=0;
+foods.tortilla.na=600;
+foods.ketchup.k=112;
+
+// Correct data entry kept separate to make the reference table easy to audit.
+foods.milk.na=47;
+let ingredients=[];
+const $=id=>document.getElementById(id);
+// Approximate grams per US cup for each ingredient. Volume measures are estimates;
+// actual weights vary with packing, chopping, brand, and preparation.
+const gramsPerCup={
+ oats:81, rice:186, pasta:140, chicken:140, egg:243, scrambledegg:220, milk:244, yogurt:245,
+ cheddar:113, beans:172, chickpeas:164, breadcrumbs:108, parmesan:100, flour:125, sugar:200,
+ groundbeef:150, groundturkey:150, sausage:150, mozzarella:132, brownsugar:220, cocoa:86,
+ chocolatechips:170, wonton:100, apple:125, banana:150, mango:165, pineapple:165, peach:154,
+ strawberry:166, blueberry:148, blackberry:144, raspberry:123, broccoli:91, cabbage:89,
+ zucchini:124, greenonion:100, ginger:96, lemonjuice:244, soy:255, honey:340, maplesyrup:322,
+ mirin:255, ricevinegar:240, spinach:30, carrot:128, tomato:180, avocado:150, oliveoil:216,
+ vegetableoil:218, sesameoil:218, butter:227, bread:120, whitebread:60, hamburgerbun:80, almonds:143, walnuts:117, sunflowerseeds:140, chiaseeds:170, flaxseeds:150, pecans:109, peanuts:146, peanutbutter:258, cinnamon:132, pumpkinspice:100, salt:288, bakingsoda:220, bakingpowder:192, molasses:328, wholewheatflour:120, corn:165, jalapeno:90, espressopowder:90, margarine:227, tortilla:120, greenpepper:149, onion:160, garlic:136, cornstarch:128, vanilla:208, yeast:150, powderedSugar:120, raisins:145, coconut:80, tomatoescanned:240, tomatopaste:262, chickenbroth:240, vegetablebroth:240, mustard:240, ketchup:260, mayonnaise:220, blackpepper:100, paprika:100, cumin:100, oregano:30, basil:25, chiliPowder:100
+};
+function amountToGrams(id,amount,unit){
+ if(unit==="g") return amount;
+ if(unit==="oz") return amount*28.3495;
+ const cupWeight=gramsPerCup[id] || 100;
+ const cups={tsp:1/48,tbsp:1/16,cup:1,floz:1/8}[unit];
+ return amount*cups*cupWeight;
+}
+// Keep the ingredient picker A–Z. Any ingredient added to the foods database
+// automatically appears in its correct alphabetical position on page load.
+function populateIngredientOptions(){
+ const select=$("food"), previous=select.value;
+ const sorted=Object.entries(foods).sort((a,b)=>a[1].n.localeCompare(b[1].n,undefined,{sensitivity:"base"}));
+ select.innerHTML=sorted.map(([id,food])=>`<option value="${id}">${food.n}</option>`).join("");
+ if(sorted.some(([id])=>id===previous))select.value=previous;
+}
+populateIngredientOptions();
+function renderIngredients(){
+ const box=$("ingredientList");
+ if(!ingredients.length){box.innerHTML='<p class="small">No ingredients added yet.</p>';return;}
+ const sorted=ingredients.map((item,index)=>({item,index})).sort((a,b)=>foods[a.item.id].n.localeCompare(foods[b.item.id].n,undefined,{sensitivity:"base"}));
+ box.innerHTML='<table><thead><tr><th>Ingredient (A–Z)</th><th>Entered amount</th><th>Estimated weight</th><th></th></tr></thead><tbody>'+sorted.map(({item:x,index:i})=>`<tr><td>${foods[x.id].n}</td><td>${x.amount} ${x.unitLabel}</td><td>${x.g.toFixed(1)} g</td><td><button class="action secondary" data-remove="${i}" aria-label="Remove ${foods[x.id].n}">Remove</button></td></tr>`).join("")+'</tbody></table>';
+ box.querySelectorAll("[data-remove]").forEach(b=>b.addEventListener("click",()=>{ingredients.splice(+b.dataset.remove,1);renderIngredients();$("results").innerHTML="";}));
+}
+$("add").addEventListener("click",()=>{
+ const amount=Number($("amount").value),id=$("food").value,unit=$("unit").value;
+ if(!Number.isFinite(amount)||amount<=0){alert("Enter an amount greater than zero.");return;}
+ const labels={tsp:"tsp",tbsp:"tbsp",cup:"cup(s)",oz:"oz",floz:"fl oz",g:"g"};
+ const g=amountToGrams(id,amount,unit);
+ ingredients.push({id,g,amount,unit,unitLabel:labels[unit]});
+ renderIngredients();$("results").innerHTML="";
+});
+$("clear").addEventListener("click",()=>{ingredients=[];renderIngredients();$("results").innerHTML="";});
+$("calculate").addEventListener("click",()=>{
+ if(!ingredients.length){$("results").innerHTML='<p class="notice">Add at least one ingredient first.</p>';return;}
+ let servings=Math.max(1,Math.min(100,Number($("servings").value)||1)), totals={k:0,p:0,c:0,f:0,fi:0,s:0,na:0};
+ ingredients.forEach(x=>Object.keys(totals).forEach(key=>totals[key]+=foods[x.id][key]*x.g/100));
+ let per={};Object.keys(totals).forEach(k=>per[k]=totals[k]/servings);
+ window.lastCalculatedRecipe={name:$("recipeName").value,servings,ingredients:ingredients.map(x=>({...x})),per:{...per}};
+ const fmt=(v,d=1)=>Number(v).toFixed(d);
+ const metrics=[["Calories",fmt(per.k,0),"kcal"],["Protein",fmt(per.p),"g"],["Carbohydrates",fmt(per.c),"g"],["Total fat",fmt(per.f),"g"],["Fiber",fmt(per.fi),"g"],["Total sugars",fmt(per.s),"g"],["Sodium",fmt(per.na,0),"mg"]];
+ let totalWeight=ingredients.reduce((a,x)=>a+x.g,0);
+ $("results").innerHTML=`<div class="success"><h3>${$("recipeName").value.replace(/[&<>"]/g,"")} — estimated nutrition per serving</h3><p>Based on ${ingredients.length} ingredient entries, ${fmt(totalWeight,0)} g total ingredient weight, and ${servings} servings.</p><div class="nutrients">${metrics.map(m=>`<div class="metric"><span>${m[0]}</span><strong>${m[1]}</strong><small>${m[2]} per serving</small></div>`).join("")}</div><h3 style="margin-top:18px">Ingredient contribution to recipe energy</h3>${ingredients.map((x,i)=>({x,i})).sort((a,b)=>foods[a.x.id].n.localeCompare(foods[b.x.id].n,undefined,{sensitivity:"base"})).map(({x})=>{let kcal=foods[x.id].k*x.g/100;let pct=totals.k?kcal/totals.k*100:0;return `<p>${foods[x.id].n}: ${fmt(pct,0)}% <span class="small">(${fmt(kcal,0)} kcal in full recipe)</span></p><div class="bar"><span style="width:${Math.max(0,Math.min(100,pct))}%"></span></div>`}).join("")}</div>`;
+});
+const methodInfo={
+raw:["No heat is used. Washing, measuring, chopping, mixing, and tossing are preparation techniques rather than cooking methods.","Raw foods keep their original crisp texture. Washing produce under running water and keeping raw ingredients separate from raw meat, poultry, and seafood helps reduce food-safety risks.","Nutritional impact: no cooking fat or calories are added by heat. Some heat-sensitive vitamins, such as vitamin C, are retained because the food is not heated. A dressing or dip can still add calories, fat, or sodium."],
+bake:["Baking uses dry heat in an oven, often with little or no added fat.","Baking can create a firm or crisp outside and a soft center. Moisture loss can concentrate nutrients per gram, while some heat-sensitive vitamins may decrease.","Nutritional impact: baking itself adds no calories unless the recipe includes oil, butter, sugar, or coatings. Measure added fats and sweeteners because they can raise calories and total fat or sugar."],
+roast:["Roasting uses dry oven heat, often at a relatively high temperature.","Roasting browns food and can concentrate flavors as moisture evaporates. Some heat-sensitive vitamins may decrease, depending on time and temperature.","Nutritional impact: oil brushed or tossed onto food adds calories and fat. Because water evaporates, nutrients and calories may become more concentrated per serving weight."],
+grill:["Grilling cooks food with direct heat from below or above.","Grilling can add browned or charred flavors. Avoid excessive charring and follow safe cooking temperatures.","Nutritional impact: fat may drip away from some meats during grilling, lowering total fat compared with methods that add oil. Marinades, sauces, and oils may add sugar, sodium, or calories. Avoid heavily charring foods."],
+boil:["Boiling cooks food in water at a rolling boil.","Some water-soluble vitamins, including vitamin C and some B vitamins, can move from food into the cooking water. Texture often becomes softer.","Nutritional impact: boiling usually adds little or no fat. If the cooking liquid is discarded, some dissolved vitamins and minerals are lost; using the liquid in soups or sauces can retain some of them."],
+steam:["Steaming cooks food with hot vapor rather than submerging it in water.","Steaming often helps foods retain shape and can limit nutrient loss into cooking water. Texture becomes softer.","Nutritional impact: steaming generally requires no added fat and helps retain many water-soluble nutrients better than boiling in a large amount of water."],
+saute:["Sautéing cooks smaller pieces quickly in a pan with a small amount of fat.","Quick cooking can preserve texture, though some heat-sensitive vitamins may still decrease with heat.","Nutritional impact: oil or butter increases calories and total fat. The amount and type of cooking fat matter, so measure it rather than estimating when comparing recipes."],
+pan:["Pan-frying cooks food in a shallow layer of fat.","The outside can become crisp. Food may absorb some fat, depending on coating, temperature, and cooking time.","Nutritional impact: absorbed oil increases calories and total fat. Breadings can also add carbohydrates and sodium. The amount absorbed varies with food, temperature, and cooking time."],
+deep:["Deep-frying cooks food while it is submerged in hot oil.","A crisp coating can form. Food absorbs varying amounts of oil, and breading may add carbohydrates and sodium.","Nutritional impact: absorbed oil can substantially increase calories and total fat. Deep-frying does not automatically create trans fats; trans fat depends mainly on the oil used. Partially hydrogenated oils contain industrial trans fat, while most current liquid vegetable oils contain very little. Repeatedly overheated oil can also break down, so oil quality and proper temperature matter."],
+microwave:["Microwave cooking heats food quickly using electromagnetic energy.","Short cooking times and little added water can help retain some nutrients, although results depend on the food and cooking time.","Nutritional impact: microwaving usually requires no added fat. Using little water can reduce the loss of water-soluble vitamins compared with boiling and draining."],
+stew:["Braising or stewing cooks food slowly in liquid, often in a covered pot.","Food becomes tender. Some nutrients move into the cooking liquid, which is often served as part of the dish.","Nutritional impact: the effect depends on ingredients and added fats. Nutrients that move into broth or sauce are still consumed when the liquid is eaten; sauces and broths may add sodium or calories."]
+};
+$("analyzeMethod").addEventListener("click",()=>{
+ let info=methodInfo[$("method").value],fat=$("fat").value;
+ let prepSteps=[...document.querySelectorAll('input[name="prep"]:checked')].map(x=>x.value);
+ let prepText=prepSteps.length?prepSteps.join(", "):"No preparation techniques selected.";
+ let fatText={none:"You selected no added cooking fat.",little:"A small amount of added fat may contribute some energy and fat.",some:"A moderate amount of added fat may noticeably increase total fat and energy.",more:"A generous amount of added fat can substantially increase total fat and energy."}[fat];
+ $("methodResult").innerHTML=`<div class="success"><h3>Method report</h3><p><b>Preparation techniques:</b> ${prepText}. These describe the handling or combining of ingredients before or during cooking.</p><p><b>Cooking method:</b> ${info[0]}</p><p><b>What happens to the food:</b> ${info[1]}</p><p><b>How this method can change nutritional value:</b> ${info[2]}</p><p><b>Added fat:</b> ${fatText}</p><p class="small">These are general nutrition effects. Actual changes depend on the food, ingredients, cooking time, temperature, and portion size; this report does not calculate exact nutrient changes.</p></div>`;
+});
+// Balanced Plate builder: group contributions are ingredient-weight estimates, not exact plate volume.
+const plateTargets={veg:150,fruit:100,grain:75,protein:85};
+const plateColors={veg:'#4b9865',fruit:'#d96f55',grain:'#d7a84b',protein:'#528bb4'};
+const foodGroups={
+ veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned'],
+ fruit:['apple','banana','mango','pineapple','peach','strawberry','blueberry','blackberry','raspberry'],
+ grain:['oats','bread','whitebread','hamburgerbun','rice','pasta','flour','breadcrumbs','wonton','wholewheatflour','tortilla'],
+ protein:['chicken','egg','scrambledegg','groundbeef','groundturkey','sausage','beans','chickpeas','almonds','walnuts','sunflowerseeds','chiaseeds','flaxseeds','pecans','peanuts','peanutbutter']
+};
+let mealDishes=[];
+const plateGroupNames={veg:'Vegetables',fruit:'Fruit',grain:'Grains',protein:'Protein foods'};
+function drawPlateHotspots(){
+ const svg=$('plateHotspots');let start=0;const angles={veg:108,fruit:72,grain:90,protein:90};
+ Object.entries(angles).forEach(([key,angle])=>{let a1=start*Math.PI/180,a2=(start+angle)*Math.PI/180,r=130,cx=135,cy=135,x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1),x2=cx+r*Math.cos(a2),y2=cy+r*Math.sin(a2);let path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',`M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${angle>180?1:0} 1 ${x2} ${y2} Z`);path.setAttribute('tabindex','0');path.setAttribute('role','button');path.setAttribute('aria-label',`Show ${plateGroupNames[key]} ingredients`);path.addEventListener('mouseenter',()=>showPlateGroup(key));path.addEventListener('focus',()=>showPlateGroup(key));path.addEventListener('click',()=>showPlateGroup(key));path.addEventListener('mouseleave',()=>{if(document.activeElement!==path)showPlateIntro();});path.addEventListener('blur',showPlateIntro);svg.appendChild(path);start+=angle;});
+}
+function showPlateIntro(){$('plateDetails').innerHTML='<b>Explore your plate</b><p class="small">Hover over a colored section, or use Tab to focus it, to see which ingredients contribute to that food group.</p>';}
+function showPlateGroup(group){
+ const totals=new Map();mealDishes.forEach(d=>d.ingredients.forEach(x=>{if(classifyIngredient(x.id)!==group)return;let name=foods[x.id]?.n||x.id;let amount=Number(x.g)/Number(d.servings)*Number(d.portions);totals.set(name,(totals.get(name)||0)+amount);}));
+ const entries=[...totals.entries()].sort((a,b)=>a[0].localeCompare(b[0]));let box=$('plateDetails');box.innerHTML=`<b>${plateGroupNames[group]} contributing to your plate</b>`;
+ if(!entries.length){let p=document.createElement('p');p.className='small';p.textContent='No ingredients from this food group have been added yet.';box.appendChild(p);return;}
+ let ul=document.createElement('ul');entries.forEach(([name,g])=>{let li=document.createElement('li');li.textContent=`${name} — ${Math.round(g)} g estimated`;ul.appendChild(li);});box.appendChild(ul);
+}
+function classifyIngredient(id){for(const [group,ids] of Object.entries(foodGroups)){if(ids.includes(id))return group;}return null;}
+function mealTotals(){let groups={veg:0,fruit:0,grain:0,protein:0},macros={k:0,p:0,c:0,f:0,fi:0,s:0,na:0};
+ mealDishes.forEach(d=>{Object.keys(macros).forEach(k=>macros[k]+=d.per[k]*d.portions);d.ingredients.forEach(x=>{let group=classifyIngredient(x.id);if(group)groups[group]+=x.g/d.servings*d.portions;});});return {groups,macros};}
+function updatePlate(){let {groups,macros}=mealTotals();let keys=['veg','fruit','grain','protein'],angles={veg:108,fruit:72,grain:90,protein:90},start=0,stops=[];
+ keys.forEach(k=>{let end=start+angles[k],fill=Math.min(1,groups[k]/plateTargets[k]),filled=start+angles[k]*fill;stops.push(`${plateColors[k]} ${start}deg ${filled}deg`,`#e8eeee ${filled}deg ${end}deg`);start=end;});
+ $('plateGraphic').style.background=`conic-gradient(${stops.join(',')})`;
+ let pct=keys.reduce((a,k)=>a+Math.min(1,groups[k]/plateTargets[k])*angles[k],0)/360*100;$('platePercent').textContent=Math.round(pct)+'% filled';
+ keys.forEach(k=>{$(k+'Label').textContent=Math.round(groups[k])+' / '+plateTargets[k]+' g';$(k+'Bar').style.width=Math.min(100,groups[k]/plateTargets[k]*100)+'%';});
+ const fmt=(v,d=1)=>Number(v).toFixed(d);const metric=[['Calories',fmt(macros.k,0),'kcal'],['Protein',fmt(macros.p)+' g','total'],['Carbohydrates',fmt(macros.c)+' g','total'],['Total fat',fmt(macros.f)+' g','total'],['Fiber',fmt(macros.fi)+' g','total'],['Sodium',fmt(macros.na,0)+' mg','total']];
+ $('mealMacros').innerHTML=metric.map(m=>`<div class="metric"><span>${m[0]}</span><strong>${m[1]}</strong><small>${m[2]}</small></div>`).join('');
+ if(!mealDishes.length){$('mealDishes').innerHTML='<p class="small">No dishes added yet.</p>';$('plateSuggestions').textContent='Add a recipe to see suggestions for balancing the food groups.';return;}
+ $('mealDishes').innerHTML=mealDishes.map((d,i)=>`<div class="dishrow"><div><b>${d.name.replace(/[&<>"']/g,'')}</b><div class="small">${d.portions} serving(s) added</div></div><button class="action secondary" data-meal-remove="${i}">Remove</button></div>`).join('');
+ $('mealDishes').querySelectorAll('[data-meal-remove]').forEach(b=>b.addEventListener('click',()=>{mealDishes.splice(Number(b.dataset.mealRemove),1);updatePlate();}));
+ let missing=keys.filter(k=>groups[k]<plateTargets[k]*.8);let suggestions={veg:'Try adding a vegetable side such as broccoli, cabbage, spinach, carrots, or zucchini.',fruit:'Try adding a fruit serving such as berries, mango, peaches, or pineapple.',grain:'Try adding a whole-grain food such as oats or whole-wheat bread.',protein:'Try adding a protein food such as beans, chickpeas, eggs, chicken, or nuts.'};
+ $('plateSuggestions').textContent=missing.length?'To move closer to the visual target: '+missing.map(k=>suggestions[k]).join(' '):'Nice work! Your meal is close to the visual targets for all four food groups. Consider variety, whole-food choices, and your class discussion about nutrient quality.';
+}
+$('addDishToPlate').addEventListener('click',()=>{let r=window.lastCalculatedRecipe,portions=Number($('plateServings').value);if(!r){$('currentRecipeStatus').textContent='Calculate a recipe first, then add it to your meal.';return;}if(!Number.isFinite(portions)||portions<=0||portions>20){alert('Enter a serving amount from 0.25 to 20.');return;}mealDishes.push({name:r.name,servings:r.servings,ingredients:r.ingredients.map(x=>({...x})),per:{...r.per},portions});updatePlate();});
+$('clearMeal').addEventListener('click',()=>{mealDishes=[];updatePlate();showPlateIntro();});
+drawPlateHotspots();
+const originalCalculate=$('calculate').onclick;
+$('calculate').addEventListener('click',()=>{if(window.lastCalculatedRecipe){$('currentRecipeStatus').innerHTML=`<b>Ready to add:</b> ${window.lastCalculatedRecipe.name.replace(/[&<>"']/g,'')} — nutrition per serving has been calculated.`;}});
+
+document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{
+ document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",String(b===btn)));
+ document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===btn.dataset.tab));
+}));
+</script>
+</body></html>
