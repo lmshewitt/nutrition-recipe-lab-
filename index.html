@@ -285,6 +285,31 @@ foods.espressopowder.fi=0;
 foods.tortilla.na=600;
 foods.ketchup.k=112;
 
+// Additional classroom ingredients requested for the expanded recipe library.
+// Macro values are approximate per 100 g; fresh, canned, and branded products vary.
+Object.assign(foods,{
+ parsley:{n:"Parsley (fresh)",k:36,p:3,c:6.3,f:.8,fi:3.3,s:.9,na:56},
+ redpepperflakes:{n:"Red pepper flakes",k:318,p:12,c:57,f:17,fi:27,s:10,na:30},
+ shrimp:{n:"Shrimp (cooked)",k:99,p:24,c:.2,f:.3,fi:0,s:0,na:111},
+ fennel:{n:"Fennel bulb",k:31,p:1.2,c:7.3,f:.2,fi:3.1,s:3.9,na:52},
+ pickles:{n:"Pickles (dill)",k:12,p:.5,c:2.4,f:.2,fi:1.2,s:1.1,na:1208},
+ picklerelish:{n:"Pickle relish",k:130,p:.4,c:32,f:.5,fi:1.2,s:25,na:950},
+ chives:{n:"Chives (fresh)",k:30,p:3.3,c:4.4,f:.7,fi:2.5,s:1.9,na:3},
+ capers:{n:"Capers",k:23,p:2.4,c:4.9,f:.9,fi:3.2,s:0.4,na:2348},
+ cayennehotsauce:{n:"Cayenne hot sauce",k:11,p:.5,c:1.8,f:.4,fi:.2,s:.9,na:2400},
+ lemon:{n:"Lemon (whole, flesh)",k:29,p:1.1,c:9.3,f:.3,fi:2.8,s:2.5,na:2},
+ lime:{n:"Lime (whole, flesh)",k:30,p:.7,c:10.5,f:.2,fi:2.8,s:1.7,na:2},
+ lettuce:{n:"Lettuce (romaine)",k:17,p:1.2,c:3.3,f:.3,fi:2.1,s:1.2,na:8},
+ kale:{n:"Kale (raw)",k:49,p:4.3,c:8.8,f:.9,fi:3.6,s:2.3,na:38},
+ shallot:{n:"Shallot",k:72,p:2.5,c:16.8,f:.1,fi:3.2,s:7.9,na:12},
+ garlicpowder:{n:"Garlic powder",k:331,p:16.6,c:72.7,f:.7,fi:9.0,s:2.4,na:60},
+ onionpowder:{n:"Onion powder",k:341,p:10.4,c:79.1,f:1.04,fi:15.2,s:6.6,na:73},
+ sourcream:{n:"Sour cream",k:198,p:2.4,c:4.6,f:19.4,fi:0,s:3.4,na:80},
+ dijonmustard:{n:"Dijon mustard",k:66,p:4.4,c:5.8,f:3.3,fi:3.3,s:2.4,na:1200},
+ celery:{n:"Celery",k:14,p:.7,c:3,f:.2,fi:1.6,s:1.3,na:80},
+ cucumber:{n:"Cucumber",k:15,p:.7,c:3.6,f:.1,fi:.5,s:1.7,na:2}
+});
+
 // Selected micronutrient estimates per 100 g. These are generic food-composition
 // references; product fortification and brand formulations can change values.
 // Fields: vitamin A (mcg RAE), C (mg), D (mcg), E (mg), K (mcg),
@@ -351,7 +376,31 @@ const micronutrientProfiles={
  greenpepper:{a:18,c:80.4,d:0,e:.37,k:7.4,ca:10,fe:.34,po:175,mg:10,zn:.13},
  onion:{a:0,c:7.4,d:0,e:.02,k:.4,ca:23,fe:.21,po:146,mg:10,zn:.17},
  garlic:{a:0,c:31.2,d:0,e:.08,k:1.7,ca:181,fe:1.7,po:401,mg:25,zn:1.16}
+
 };
+// Selected generic profiles for the newly added ingredients, per 100 g.
+Object.assign(micronutrientProfiles,{
+ parsley:{a:421,c:133,d:0,e:.75,k:1640,ca:138,fe:6.2,po:554,mg:50,zn:1.07},
+ redpepperflakes:{a:1480,c:0,d:0,e:29.8,k:80,ca:148,fe:7.8,po:2014,mg:152,zn:2.5},
+ shrimp:{a:54,c:0,d:0,e:2.2,k:0,ca:70,fe:.5,po:259,mg:39,zn:1.6},
+ fennel:{a:48,c:12,d:0,e:0.58,k:62.8,ca:49,fe:.73,po:414,mg:17,zn:.2},
+ pickles:{a:4,c:2.3,d:0,e:.09,k:47,ca:57,fe:.3,po:23,mg:4,zn:.2},
+ picklerelish:{a:10,c:4,d:0,e:.1,k:10,ca:20,fe:.4,po:40,mg:5,zn:.1},
+ chives:{a:218,c:58.1,d:0,e:1.6,k:212.7,ca:92,fe:1.6,po:296,mg:42,zn:.56},
+ capers:{a:7,c:4.3,d:0,e:.88,k:24.6,ca:40,fe:1.7,po:40,mg:33,zn:.32},
+ cayennehotsauce:{a:20,c:4,d:0,e:.7,k:10,ca:10,fe:.5,po:80,mg:10,zn:.1},
+ lemon:{a:1,c:53,d:0,e:.15,k:0,ca:26,fe:.6,po:138,mg:8,zn:.06},
+ lime:{a:2,c:29.1,d:0,e:.22,k:0,ca:33,fe:.6,po:102,mg:6,zn:.11},
+ lettuce:{a:436,c:4,d:0,e:.13,k:102.5,ca:33,fe:.97,po:247,mg:14,zn:.23},
+ kale:{a:241,c:120,d:0,e:1.54,k:704.8,ca:150,fe:1.47,po:491,mg:47,zn:.56},
+ shallot:{a:0,c:8,d:0,e:.04,k:.8,ca:37,fe:1.2,po:334,mg:21,zn:.4},
+ garlicpowder:{a:0,c:1.2,d:0,e:.1,k:0,ca:79,fe:5.65,po:1193,mg:77,zn:2.99},
+ onionpowder:{a:0,c:0,d:0,e:.01,k:0,ca:38,fe:0.8,po:985,mg:35,zn:.4},
+ sourcream:{a:160,c:.9,d:.2,e:.4,k:1,ca:101,fe:.1,po:125,mg:10,zn:.5},
+ dijonmustard:{a:2,c:1,d:0,e:.4,k:1,ca:63,fe:1.6,po:152,mg:48,zn:.9},
+ celery:{a:22,c:3.1,d:0,e:.27,k:29.3,ca:40,fe:.2,po:260,mg:11,zn:.13},
+ cucumber:{a:5,c:2.8,d:0,e:.03,k:16.4,ca:16,fe:.28,po:147,mg:13,zn:.2}
+});
 Object.entries(micronutrientProfiles).forEach(([id,mi])=>{if(foods[id])foods[id].mi=mi;});
 
 // Correct data entry kept separate to make the reference table easy to audit.
@@ -368,7 +417,10 @@ const gramsPerCup={
  strawberry:166, blueberry:148, blackberry:144, raspberry:123, broccoli:91, cabbage:89,
  zucchini:124, greenonion:100, ginger:96, lemonjuice:244, soy:255, honey:340, maplesyrup:322,
  mirin:255, ricevinegar:240, spinach:30, carrot:128, tomato:180, avocado:150, oliveoil:216,
- vegetableoil:218, sesameoil:218, butter:227, bread:120, whitebread:60, hamburgerbun:80, almonds:143, walnuts:117, sunflowerseeds:140, chiaseeds:170, flaxseeds:150, pecans:109, peanuts:146, peanutbutter:258, cinnamon:132, pumpkinspice:100, salt:288, bakingsoda:220, bakingpowder:192, molasses:328, wholewheatflour:120, corn:165, jalapeno:90, espressopowder:90, margarine:227, tortilla:120, greenpepper:149, onion:160, garlic:136, cornstarch:128, vanilla:208, yeast:150, powderedSugar:120, raisins:145, coconut:80, tomatoescanned:240, tomatopaste:262, chickenbroth:240, vegetablebroth:240, mustard:240, ketchup:260, mayonnaise:220, blackpepper:100, paprika:100, cumin:100, oregano:30, basil:25, chiliPowder:100, pumpkinpuree:245, chocolatebar:170, wholemilk:244, almondmilk:240, oatmilk:240, plainyogurt:245, cottagecheese:226, creamcheese:232, grahamcrackers:84, grahamcrackercrumbs:84, marshmallows:50, nutmeg:105, groundginger:96, russetpotato:150
+ vegetableoil:218, sesameoil:218, butter:227, bread:120, whitebread:60, hamburgerbun:80, almonds:143, walnuts:117, sunflowerseeds:140, chiaseeds:170, flaxseeds:150, pecans:109, peanuts:146, peanutbutter:258, cinnamon:132, pumpkinspice:100, salt:288, bakingsoda:220, bakingpowder:192, molasses:328, wholewheatflour:120, corn:165, jalapeno:90, espressopowder:90, margarine:227, tortilla:120, greenpepper:149, onion:160, garlic:136, cornstarch:128, vanilla:208, yeast:150, powderedSugar:120, raisins:145, coconut:80, tomatoescanned:240, tomatopaste:262, chickenbroth:240, vegetablebroth:240, mustard:240, ketchup:260, mayonnaise:220, blackpepper:100, paprika:100, cumin:100, oregano:30, basil:25, chiliPowder:100, pumpkinpuree:245, chocolatebar:170, wholemilk:244, almondmilk:240, oatmilk:240, plainyogurt:245, cottagecheese:226, creamcheese:232, grahamcrackers:84, grahamcrackercrumbs:84, marshmallows:50, nutmeg:105, groundginger:96, russetpotato:150, parsley:30, redpepperflakes:90, shrimp:145, fennel:87,
+  pickles:155, picklerelish:240, chives:24, capers:140, cayennehotsauce:240,
+  lemon:212, lime:200, lettuce:47, kale:67, shallot:160, garlicpowder:120,
+  onionpowder:115, sourcream:230, dijonmustard:240, celery:101, cucumber:104
 };
 function amountToGrams(id,amount,unit){
  if(unit==="g") return amount;
@@ -445,12 +497,12 @@ $("analyzeMethod").addEventListener("click",()=>{
 const plateTargets={veg:150,fruit:100,grain:75,protein:85};
 const plateColors={veg:'#4b9865',fruit:'#d96f55',grain:'#d7a84b',protein:'#528bb4'};
 const foodGroups={
- veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned','pumpkinpuree','russetpotato'],
- fruit:['apple','banana','mango','pineapple','peach','strawberry','blueberry','blackberry','raspberry'],
+ veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned','pumpkinpuree','russetpotato','parsley','fennel','chives','lettuce','kale','shallot','celery','cucumber'],
+ fruit:['apple','banana','mango','pineapple','peach','strawberry','blueberry','blackberry','raspberry','lemon','lime'],
  grain:['oats','bread','whitebread','hamburgerbun','rice','pasta','flour','breadcrumbs','wonton','wholewheatflour','tortilla'],
- protein:['chicken','egg','scrambledegg','groundbeef','groundturkey','sausage','beans','chickpeas','almonds','walnuts','sunflowerseeds','chiaseeds','flaxseeds','pecans','peanuts','peanutbutter','yogurt','plainyogurt','cottagecheese','cheddar','mozzarella','parmesan']
+ protein:['chicken','egg','scrambledegg','groundbeef','groundturkey','sausage','shrimp','beans','chickpeas','almonds','walnuts','sunflowerseeds','chiaseeds','flaxseeds','pecans','peanuts','peanutbutter','yogurt','plainyogurt','cottagecheese','cheddar','mozzarella','parmesan']
 };
-const dairyFoods=['milk','wholemilk','yogurt','plainyogurt','cheddar','mozzarella','parmesan','cottagecheese','creamcheese'];
+const dairyFoods=['milk','wholemilk','yogurt','plainyogurt','cheddar','mozzarella','parmesan','cottagecheese','creamcheese','sourcream'];
 const milkAlternativeFoods=['almondmilk','oatmilk'];
 let mealDishes=[];
 const plateGroupNames={veg:'Vegetables',fruit:'Fruit',grain:'Grains',protein:'Protein foods'};
