@@ -363,6 +363,50 @@ Object.assign(foods,{
  frozenmixedberries:{n:"Frozen mixed berries (unsweetened)",k:47,p:1,c:11.5,f:.5,fi:4,s:6.5,na:1}
 });
 
+
+// Additional proteins, charcuterie-board foods, vegetables, sauces, and snacks.
+// Approximate macro values per 100 g; products and preparation vary by brand.
+Object.assign(foods,{
+ salmon:{n:"Salmon (cooked)",k:206,p:22.1,c:0,f:12.4,fi:0,s:0,na:59},
+ cod:{n:"Cod (cooked)",k:89,p:19.9,c:0,f:.7,fi:0,s:0,na:350},
+ tuna:{n:"Tuna (canned in water, drained)",k:116,p:25.5,c:0,f:.8,fi:0,s:0,na:350},
+ tacoseasoning:{n:"Taco seasoning",k:250,p:10,c:45,f:6,fi:15,s:5,na:12000},
+ salsa:{n:"Salsa",k:36,p:1.5,c:7,f:.2,fi:1.5,s:4,na:600},
+ marinara:{n:"Marinara sauce",k:51,p:1.4,c:8.1,f:1.5,fi:1.5,s:5,na:430},
+ brusselssprouts:{n:"Brussels sprouts",k:43,p:3.4,c:9,f:.3,fi:3.8,s:2.2,na:25},
+ corntortillachips:{n:"Corn tortilla chips",k:489,p:7,c:63.3, f:23,fi:5,s:.5,na:500},
+ arugula:{n:"Arugula",k:25,p:2.6,c:3.7,f:.7,fi:1.6,s:2.1,na:27},
+ swisscheese:{n:"Swiss cheese",k:393,p:27,c:1.4,f:31,fi:0,s:.4,na:187},
+ salami:{n:"Salami",k:407,p:22.6,c:1.6,f:33.7,fi:0,s:1.2,na:1580},
+ pepperoni:{n:"Pepperoni",k:494,p:19.3,c:1.8,f:44.6,fi:0,s:1.1,na:1750},
+ prosciutto:{n:"Prosciutto",k:195,p:27,c:0,f:8.5,fi:0,s:0,na:2600},
+ deliham:{n:"Deli ham",k:145,p:20.9,c:1.5,f:5.5,fi:0,s:1.2,na:1200},
+ deliturkey:{n:"Deli turkey",k:112,p:18,c:3,f:2.5,fi:0,s:2,na:900},
+ summersausage:{n:"Summer sausage",k:390,p:18,c:2,f:34,fi:0,s:1,na:1500},
+ brie:{n:"Brie cheese",k:334,p:20.8,c:.5,f:27.7,fi:0,s:.5,na:629},
+ gouda:{n:"Gouda cheese",k:356,p:24.9,c:2.2,f:27.4,fi:0,s:2.2,na:819},
+ provolone:{n:"Provolone cheese",k:351,p:25.6,c:2.1,f:26.6,fi:0,s:.6,na:876},
+ bluecheese:{n:"Blue cheese",k:353,p:21.4,c:2.3,f:28.7,fi:0,s:.5,na:1395},
+ feta:{n:"Feta cheese",k:265,p:14.2,c:3.9,f:21.5,fi:0,s:0,na:1116},
+ goatcheese:{n:"Goat cheese",k:364,p:21.6,c:0.1,f:29.8,fi:0,s:0.1,na:415},
+ greenolives:{n:"Green olives",k:145,p:1,c:3.8,f:15.3,fi:3.3,s:0.5,na:1556},
+ blackolives:{n:"Black olives",k:116,p:.8,c:6,f:10.9,fi:1.6,s:0,na:735},
+ artichokehearts:{n:"Artichoke hearts",k:47,p:3.3,c:10.5,f:.2,fi:5.4,s:1,na:94},
+ sundriedtomatoes:{n:"Sun-dried tomatoes",k:258,p:14.1,c:55.8,f:3,fi:12.3,s:37.6,na:1070},
+ driedapricots:{n:"Dried apricots",k:241,p:3.4,c:62.6,f:.5,fi:7.3,s:53.4,na:10},
+ driedfigs:{n:"Dried figs",k:249,p:3.3,c:63.9,f:.9,fi:9.8,s:47.9,na:10},
+ dates:{n:"Dates",k:282,p:2.5,c:75,f:.4,fi:8,s:63.4,na:2},
+ grapes:{n:"Grapes",k:69,p:.7,c:18.1,f:.2,fi:.9,s:15.5,na:2},
+ crackers:{n:"Crackers (plain)",k:430,p:9,c:72,f:13,fi:2,s:5,na:700},
+ pretzels:{n:"Pretzels",k:380,p:10,c:80,f:3,fi:3,s:2,na:1200},
+ hummus:{n:"Hummus",k:166,p:7.9,c:14.3,f:9.6,fi:6,s:.3,na:379},
+ pesto:{n:"Pesto",k:470,p:5,c:6,f:48,fi:2,s:2,na:900},
+ figjam:{n:"Fig jam",k:250,p:.5,c:65,f:.2,fi:2,s:55,na:40},
+ apricotpreserves:{n:"Apricot preserves",k:250,p:.3,c:65,f:.1,fi:1,s:55,na:20},
+ balsamicglaze:{n:"Balsamic glaze",k:200,p:1,c:48,f:0,fi:0,s:42,na:300},
+ bacon:{n:"Bacon (cooked)",k:541,p:37,c:1.4,f:42,fi:0,s:0,na:1717}
+});
+
 // Selected micronutrient estimates per 100 g. These are generic food-composition
 // references; product fortification and brand formulations can change values.
 // Fields: vitamin A (mcg RAE), C (mg), D (mcg), E (mg), K (mcg),
@@ -481,6 +525,39 @@ Object.assign(micronutrientProfiles,{
  cranberries:{a:3,c:14,d:0,e:1.3,k:5,ca:8,fe:.3,po:80,mg:6,zn:.1}
 });
 
+
+// Selected generic micronutrient estimates for the latest additions, per 100 g.
+Object.assign(micronutrientProfiles,{
+ salmon:{a:40,c:0,d:13,e:3.6,k:0,ca:9,fe:.5,po:490,mg:30,zn:.6},
+ cod:{a:12,c:0,d:1,e:.6,k:0,ca:16,fe:.4,po:413,mg:32,zn:.5},
+ tuna:{a:20,c:0,d:1.7,e:1,k:0,ca:11,fe:1,po:237,mg:30,zn:.8},
+ brusselssprouts:{a:38,c:85,k:177,ca:42,fe:1.4,po:389,mg:23,zn:.4,e:.9,d:0},
+ arugula:{a:119,c:15,k:109,ca:160,fe:1.5,po:369,mg:47,zn:.5,e:.4,d:0},
+ swisscheese:{a:220,c:0,d:.8,e:.3,k:2.7,ca:890,fe:.2,po:468,mg:33,zn:4.4},
+ salami:{a:0,c:0,d:.5,e:.3,k:0,ca:10,fe:1.4,po:220,mg:18,zn:2.5},
+ pepperoni:{a:0,c:0,d:.5,e:.3,k:0,ca:20,fe:1.5,po:200,mg:20,zn:2.5},
+ prosciutto:{a:0,c:0,d:.5,e:.2,k:0,ca:10,fe:1,po:250,mg:20,zn:2},
+ deliham:{a:0,c:0,d:.2,e:.2,k:0,ca:10,fe:.8,po:250,mg:20,zn:2},
+ deliturkey:{a:0,c:0,d:.2,e:.2,k:0,ca:10,fe:.8,po:220,mg:20,zn:2},
+ summersausage:{a:0,c:0,d:.4,e:.2,k:0,ca:10,fe:1.5,po:230,mg:20,zn:2.5},
+ brie:{a:174,c:0,d:.5,e:.2,k:2,ca:184,fe:.5,po:152,mg:20,zn:2.4},
+ gouda:{a:165,c:0,d:.5,e:.2,k:2,ca:700,fe:.2,po:546,mg:29,zn:3.9},
+ provolone:{a:22,c:0,d:.5,e:.2,k:2,ca:756,fe:.5,po:496,mg:28,zn:3.2},
+ bluecheese:{a:198,c:0,d:.5,e:.3,k:2.4,ca:528,fe:.3,po:387,mg:23,zn:2.7},
+ feta:{a:125,c:0,d:.4,e:.2,k:1.8,ca:493,fe:.7,po:337,mg:19,zn:2.9},
+ goatcheese:{a:146,c:0,d:.5,e:.2,k:2,ca:298,fe:1.6,po:256,mg:29,zn:1.9},
+ greenolives:{a:20,c:0,d:0,e:3.8,k:1.4,ca:52,fe:.5,po:42,mg:11,zn:.1},
+ blackolives:{a:17,c:0,d:0,e:1.7,k:1.4,ca:88,fe:6.3,po:8,mg:4,zn:.2},
+ artichokehearts:{a:1,c:11.7,d:0,e:.2,k:14.8,ca:44,fe:1.3,po:370,mg:60,zn:.5},
+ sundriedtomatoes:{a:44,c:39,d:0,e:0,k:43,ca:110,fe:9.1,po:3427,mg:194,zn:1.9},
+ driedapricots:{a:360,c:1,d:0,e:4.3,k:3.1,ca:55,fe:2.7,po:1162,mg:32,zn:.4},
+ driedfigs:{a:7,c:1.2,d:0,e:.4,k:15.6,ca:162,fe:2,po:680,mg:68,zn:.6},
+ dates:{a:7,c:0,d:0,e:.1,k:2.7,ca:39,fe:1,po:656,mg:43,zn:.3},
+ grapes:{a:3,c:3.2,d:0,e:.2,k:14.6,ca:10,fe:.4,po:191,mg:7,zn:.1},
+ hummus:{a:2,c:0,d:0,e:.9,k:3,ca:38,fe:2.4,po:176,mg:71,zn:1.8},
+ bacon:{a:11,c:0,d:.5,e:.3,k:0,ca:11,fe:.4,po:231,mg:23,zn:2.2}
+});
+
 Object.entries(micronutrientProfiles).forEach(([id,mi])=>{if(foods[id])foods[id].mi=mi;});
 
 // Correct data entry kept separate to make the reference table easy to audit.
@@ -511,6 +588,17 @@ const gramsPerCup={
  frozenpeach:155, frozenpineapple:165, frozenmixedberries:145
 
 };
+
+// Approximate cup weights for the latest additions.
+Object.assign(gramsPerCup,{
+ salmon:140,cod:145,tuna:165,tacoseasoning:120,salsa:250,marinara:250,brusselssprouts:88,
+ corntortillachips:45,arugula:20,swisscheese:132,salami:135,pepperoni:135,prosciutto:100,
+ deliham:140,deliturkey:140,summersausage:135,brie:135,gouda:130,provolone:132,bluecheese:135,
+ feta:150,goatcheese:140,greenolives:135,blackolives:135,artichokehearts:170,sundriedtomatoes:55,
+ driedapricots:130,driedfigs:150,dates:147,grapes:151,crackers:100,pretzels:90,hummus:246,
+ pesto:240,figjam:320,apricotpreserves:320,balsamicglaze:320,bacon:65
+});
+
 function amountToGrams(id,amount,unit){
  if(unit==="g") return amount;
  if(unit==="oz") return amount*28.3495;
@@ -586,12 +674,12 @@ $("analyzeMethod").addEventListener("click",()=>{
 const plateTargets={veg:150,fruit:100,grain:75,protein:85};
 const plateColors={veg:'#4b9865',fruit:'#d96f55',grain:'#d7a84b',protein:'#528bb4'};
 const foodGroups={
- veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned','pumpkinpuree','russetpotato','parsley','freshbasil','fennel','chives','lettuce','kale','shallot','celery','cucumber'],
- fruit:['apple','banana','mango','pineapple','peach','strawberry','blueberry','blackberry','raspberry','lemon','lime','cranberries','frozenstrawberry','frozenblueberry','frozenraspberry','frozenblackberry','frozenmango','frozenpeach','frozenpineapple','frozenmixedberries','orangejuice','applejuice','pineapplejuice','grapejuice','mangojuice'],
- grain:['oats','bread','whitebread','hamburgerbun','rice','pasta','flour','breadcrumbs','wonton','wholewheatflour','tortilla'],
- protein:['chicken','egg','scrambledegg','groundbeef','groundturkey','sausage','shrimp','beans','chickpeas','almonds','walnuts','sunflowerseeds','chiaseeds','flaxseeds','pecans','peanuts','peanutbutter','yogurt','plainyogurt','cottagecheese','cheddar','mozzarella','parmesan']
+ veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned','pumpkinpuree','russetpotato','parsley','freshbasil','fennel','chives','lettuce','kale','shallot','celery','cucumber','brusselssprouts','salsa','marinara','arugula','greenolives','blackolives','artichokehearts','sundriedtomatoes'],
+ fruit:['apple','banana','mango','pineapple','peach','strawberry','blueberry','blackberry','raspberry','lemon','lime','cranberries','frozenstrawberry','frozenblueberry','frozenraspberry','frozenblackberry','frozenmango','frozenpeach','frozenpineapple','frozenmixedberries','orangejuice','applejuice','pineapplejuice','grapejuice','mangojuice','driedapricots','driedfigs','dates','grapes'],
+ grain:['oats','bread','whitebread','hamburgerbun','rice','pasta','flour','breadcrumbs','wonton','wholewheatflour','tortilla','corntortillachips','crackers','pretzels'],
+ protein:['chicken','egg','scrambledegg','groundbeef','groundturkey','sausage','shrimp','beans','chickpeas','almonds','walnuts','sunflowerseeds','chiaseeds','flaxseeds','pecans','peanuts','peanutbutter','yogurt','plainyogurt','cottagecheese','cheddar','mozzarella','parmesan','swisscheese','brie','gouda','provolone','bluecheese','feta','goatcheese','salmon','cod','tuna','salami','pepperoni','prosciutto','deliham','deliturkey','summersausage','bacon','hummus']
 };
-const dairyFoods=['milk','wholemilk','yogurt','plainyogurt','cheddar','mozzarella','parmesan','cottagecheese','creamcheese','sourcream','heavycream','halfandhalf','vanillaicecream','chocolateicecream','strawberryicecream'];
+const dairyFoods=['milk','wholemilk','yogurt','plainyogurt','cheddar','mozzarella','parmesan','cottagecheese','creamcheese','sourcream','heavycream','halfandhalf','vanillaicecream','chocolateicecream','strawberryicecream','swisscheese','brie','gouda','provolone','bluecheese','feta','goatcheese'];
 const milkAlternativeFoods=['almondmilk','oatmilk'];
 let mealDishes=[];
 const plateGroupNames={veg:'Vegetables',fruit:'Fruit',grain:'Grains',protein:'Protein foods'};
