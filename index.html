@@ -242,7 +242,7 @@ Object.assign(foods,{
  espressopowder:{n:"Espresso powder",k:350,p:12,c:75,f:1,fi:0,s:0,na:100},
  margarine:{n:"Margarine",k:717,p:0.2,c:0.7,f:80.7,fi:0,s:0.5,na:600},
  tortilla:{n:"Flour tortilla",k:312,p:8.3,c:52.1,f:8.3,fi:3.3,s:3.1,na:600},
- greenpepper:{n:"Green bell pepper",k:20,p:0.9,c:4.6,f:0.2,fi:1.7,s:2.4,na:3},
+ greenpepper:{n:"Bell pepper (any color)",k:26,p:1,c:6,f:.2,fi:2.1,s:4.2,na:3},
  onion:{n:"Onion",k:40,p:1.1,c:9.3,f:0.1,fi:1.7,s:4.2,na:4},
  garlic:{n:"Garlic",k:149,p:6.4,c:33.1,f:0.5,fi:2.1,s:1,na:17},
  cornstarch:{n:"Cornstarch",k:381,p:0.3,c:91.3,f:0.1,fi:0.9,s:0,na:9},
@@ -308,6 +308,59 @@ Object.assign(foods,{
  dijonmustard:{n:"Dijon mustard",k:66,p:4.4,c:5.8,f:3.3,fi:3.3,s:2.4,na:1200},
  celery:{n:"Celery",k:14,p:.7,c:3,f:.2,fi:1.6,s:1.3,na:80},
  cucumber:{n:"Cucumber",k:15,p:.7,c:3.6,f:.1,fi:.5,s:1.7,na:2}
+});
+
+
+// Beverage, dessert, sauce, and frozen-fruit additions requested for classroom recipes.
+// Values are approximate per 100 g; brands, added sugar, and preparation vary.
+Object.assign(foods,{
+ heavycream:{n:"Heavy cream",k:340,p:2.1,c:2.8,f:36.1,fi:0,s:2.9,na:38},
+ halfandhalf:{n:"Half-and-half",k:131,p:3.1,c:4.3,f:11.5,fi:0,s:4.3,na:41},
+ vanillaicecream:{n:"Vanilla ice cream",k:207,p:3.5,c:23.6,f:11,fi:.7,s:21.2,na:80},
+ chocolateicecream:{n:"Chocolate ice cream",k:216,p:3.8,c:28,f:11,fi:1.2,s:25,na:80},
+ strawberryicecream:{n:"Strawberry ice cream",k:192,p:3.2,c:27,f:8.4,fi:.6,s:24,na:70},
+ coffee:{n:"Coffee (brewed)",k:1,p:.1,c:0,f:0,fi:0,s:0,na:2},
+ espresso:{n:"Espresso (brewed)",k:9,p:.1,c:1.7,f:.2,fi:0,s:0,na:14},
+ drinkingsyrup:{n:"Flavored drink syrup",k:300,p:0,c:75,f:0,fi:0,s:70,na:20},
+ vanillasyrup:{n:"Vanilla drink syrup",k:300,p:0,c:75,f:0,fi:0,s:70,na:20},
+ caramelsyrup:{n:"Caramel syrup",k:300,p:0,c:75,f:0,fi:0,s:70,na:35},
+ strawberrysyrup:{n:"Strawberry syrup",k:270,p:0,c:67,f:0,fi:0,s:62,na:25},
+ chocolatesyrup:{n:"Chocolate syrup",k:279,p:2.5,c:65,f:1.5,fi:3,s:52,na:100},
+ oreo:{n:"Oreo cookies",k:480,p:4.5,c:71,f:20,fi:3,s:38,na:440},
+ chipsahoy:{n:"Chips Ahoy! cookies",k:490,p:5.5,c:68,f:23,fi:2.5,s:34,na:430},
+ teriyaki:{n:"Teriyaki sauce",k:89,p:5.9,c:15.6,f:.1,fi:.2,s:14,na:3000},
+ cranberries:{n:"Cranberries (fresh)",k:46,p:.4,c:12.2,f:.1,fi:4.6,s:4,na:2},
+ freshbasil:{n:"Basil (fresh)",k:23,p:3.2,c:2.7,f:.6,fi:1.6,s:.3,na:4},
+ sparklingwater:{n:"Sparkling water (plain)",k:0,p:0,c:0,f:0,fi:0,s:0,na:0},
+ soda:{n:"Soda (regular)",k:41,p:0,c:10.6,f:0,fi:0,s:10.6,na:4},
+ dietsoda:{n:"Diet soda",k:1,p:0,c:0,f:0,fi:0,s:0,na:10},
+ orangejuice:{n:"Orange juice",k:45,p:.7,c:10.4,f:.2,fi:.2,s:8.4,na:1},
+ applejuice:{n:"Apple juice",k:46,p:.1,c:11.3,f:.1,fi:.2,s:9.6,na:4},
+ pineapplejuice:{n:"Pineapple juice",k:53,p:.4,c:12.9,f:.1,fi:.2,s:10,na:1},
+ cranberryjuice:{n:"Cranberry juice cocktail",k:46,p:0,c:12.1,f:0,fi:0,s:11.5,na:2},
+ grapejuice:{n:"Grape juice",k:60,p:.4,c:14.8,f:.1,fi:.2,s:14.2,na:5},
+ lemonade:{n:"Lemonade",k:40,p:.1,c:10.4,f:0,fi:0,s:9.5,na:4},
+ limeade:{n:"Limeade",k:40,p:0,c:10.5,f:0,fi:0,s:9.8,na:2},
+ fruitpunch:{n:"Fruit punch",k:50,p:0,c:12.5,f:0,fi:0,s:12,na:5},
+ mangojuice:{n:"Mango juice",k:51,p:.3,c:12.5,f:.1,fi:.3,s:11.5,na:2},
+ peachnectar:{n:"Peach nectar",k:54,p:.3,c:13.5,f:.1,fi:.2,s:12,na:5},
+ coconutwater:{n:"Coconut water",k:19,p:.7,c:3.7,f:.2,fi:1.1,s:2.6,na:105},
+ coconutmilk:{n:"Coconut milk (carton beverage, unsweetened)",k:20,p:.2,c:1,f:2,fi:0,s:0,na:15},
+ gingerale:{n:"Ginger ale",k:34,p:0,c:8.8,f:0,fi:0,s:8.8,na:7},
+ lemonlimesoda:{n:"Lemon-lime soda",k:40,p:0,c:10.6,f:0,fi:0,s:10.6,na:7},
+ tonicwater:{n:"Tonic water",k:34,p:0,c:8.8,f:0,fi:0,s:8.8,na:4},
+ sweettea:{n:"Sweetened iced tea",k:35,p:0,c:9,f:0,fi:0,s:8.5,na:4},
+ unsweettea:{n:"Unsweetened iced tea",k:1,p:0,c:.3,f:0,fi:0,s:0,na:4},
+ grenadine:{n:"Grenadine",k:268,p:0,c:67,f:0,fi:0,s:65,na:10},
+ whippedcream:{n:"Whipped cream",k:257,p:3.2,c:12.5,f:22.2,fi:0,s:8.5,na:75},
+ frozenstrawberry:{n:"Frozen strawberries (unsweetened)",k:35,p:.7,c:8.3,f:.3,fi:2.1,s:4.6,na:1},
+ frozenblueberry:{n:"Frozen blueberries (unsweetened)",k:51,p:.6,c:12.2,f:.3,fi:2.4,s:9.1,na:1},
+ frozenraspberry:{n:"Frozen raspberries (unsweetened)",k:52,p:1.2,c:11.9,f:.7,fi:6.5,s:4.4,na:1},
+ frozenblackberry:{n:"Frozen blackberries (unsweetened)",k:43,p:1.4,c:9.6,f:.5,fi:5.3,s:4.9,na:1},
+ frozenmango:{n:"Frozen mango (unsweetened)",k:60,p:.8,c:15,f:.4,fi:1.6,s:13.7,na:1},
+ frozenpeach:{n:"Frozen peaches (unsweetened)",k:39,p:.9,c:9.5,f:.3,fi:1.5,s:8.4,na:0},
+ frozenpineapple:{n:"Frozen pineapple (unsweetened)",k:50,p:.5,c:13.1,f:.1,fi:1.4,s:9.9,na:1},
+ frozenmixedberries:{n:"Frozen mixed berries (unsweetened)",k:47,p:1,c:11.5,f:.5,fi:4,s:6.5,na:1}
 });
 
 // Selected micronutrient estimates per 100 g. These are generic food-composition
@@ -401,6 +454,33 @@ Object.assign(micronutrientProfiles,{
  celery:{a:22,c:3.1,d:0,e:.27,k:29.3,ca:40,fe:.2,po:260,mg:11,zn:.13},
  cucumber:{a:5,c:2.8,d:0,e:.03,k:16.4,ca:16,fe:.28,po:147,mg:13,zn:.2}
 });
+
+Object.assign(micronutrientProfiles,{
+ frozenstrawberry:{a:1,c:40,d:0,e:.3,k:2,ca:16,fe:.4,po:150,mg:13,zn:.1},
+ frozenblueberry:{a:3,c:9,d:0,e:.6,k:19,ca:6,fe:.3,po:77,mg:6,zn:.2},
+ frozenraspberry:{a:2,c:26,d:0,e:.9,k:8,ca:25,fe:.7,po:151,mg:22,zn:.4},
+ frozenblackberry:{a:11,c:21,d:0,e:1.2,k:20,ca:29,fe:.6,po:162,mg:20,zn:.5},
+ frozenmango:{a:54,c:36,d:0,e:.9,k:4,ca:11,fe:.2,po:168,mg:10,zn:.1},
+ frozenpeach:{a:16,c:6.6,d:0,e:.7,k:3,ca:6,fe:.3,po:190,mg:9,zn:.2},
+ frozenpineapple:{a:3,c:48,d:0,e:.02,k:.7,ca:13,fe:.3,po:109,mg:12,zn:.1},
+ frozenmixedberries:{a:5,c:24,d:0,e:.7,k:12,ca:19,fe:.5,po:135,mg:15,zn:.3},
+ orangejuice:{a:10,c:50,d:0,e:.2,k:0,ca:11,fe:.2,po:200,mg:11,zn:.1},
+ applejuice:{a:0,c:.9,d:0,e:.1,k:0,ca:8,fe:.1,po:101,mg:5,zn:0},
+ pineapplejuice:{a:3,c:43,d:0,e:.02,k:.1,ca:13,fe:.3,po:130,mg:12,zn:.1},
+ cranberryjuice:{a:0,c:9,d:0,e:1.2,k:0,ca:8,fe:.3,po:77,mg:6,zn:0},
+ grapejuice:{a:0,c:25,d:0,e:.2,k:0,ca:11,fe:.3,po:104,mg:10,zn:.1},
+ mangojuice:{a:20,c:30,d:0,e:.5,k:1,ca:10,fe:.1,po:100,mg:8,zn:.1},
+ peachnectar:{a:15,c:3,d:0,e:.5,k:1,ca:5,fe:.2,po:80,mg:6,zn:.1},
+ coconutwater:{a:0,c:2.4,d:0,e:0,k:0,ca:24,fe:.3,po:250,mg:25,zn:.1},
+ heavycream:{a:411,c:0,d:.5,e:.8,k:3,ca:66,fe:.1,po:90,mg:7,zn:.3},
+ halfandhalf:{a:130,c:0,d:.3,e:.3,k:1,ca:112,fe:0,po:130,mg:10,zn:.4},
+ vanillaicecream:{a:118,c:.6,d:.2,e:.3,k:1,ca:128,fe:.1,po:199,mg:14,zn:.5},
+ chocolateicecream:{a:90,c:.5,d:.2,e:.4,k:2,ca:100,fe:.7,po:190,mg:35,zn:.7},
+ strawberryicecream:{a:90,c:2,d:.2,e:.3,k:1,ca:110,fe:.2,po:160,mg:12,zn:.4},
+ freshbasil:{a:264,c:18,d:0,e:.8,k:414,ca:177,fe:3.2,po:295,mg:64,zn:.8},
+ cranberries:{a:3,c:14,d:0,e:1.3,k:5,ca:8,fe:.3,po:80,mg:6,zn:.1}
+});
+
 Object.entries(micronutrientProfiles).forEach(([id,mi])=>{if(foods[id])foods[id].mi=mi;});
 
 // Correct data entry kept separate to make the reference table easy to audit.
@@ -420,7 +500,16 @@ const gramsPerCup={
  vegetableoil:218, sesameoil:218, butter:227, bread:120, whitebread:60, hamburgerbun:80, almonds:143, walnuts:117, sunflowerseeds:140, chiaseeds:170, flaxseeds:150, pecans:109, peanuts:146, peanutbutter:258, cinnamon:132, pumpkinspice:100, salt:288, bakingsoda:220, bakingpowder:192, molasses:328, wholewheatflour:120, corn:165, jalapeno:90, espressopowder:90, margarine:227, tortilla:120, greenpepper:149, onion:160, garlic:136, cornstarch:128, vanilla:208, yeast:150, powderedSugar:120, raisins:145, coconut:80, tomatoescanned:240, tomatopaste:262, chickenbroth:240, vegetablebroth:240, mustard:240, ketchup:260, mayonnaise:220, blackpepper:100, paprika:100, cumin:100, oregano:30, basil:25, chiliPowder:100, pumpkinpuree:245, chocolatebar:170, wholemilk:244, almondmilk:240, oatmilk:240, plainyogurt:245, cottagecheese:226, creamcheese:232, grahamcrackers:84, grahamcrackercrumbs:84, marshmallows:50, nutmeg:105, groundginger:96, russetpotato:150, parsley:30, redpepperflakes:90, shrimp:145, fennel:87,
   pickles:155, picklerelish:240, chives:24, capers:140, cayennehotsauce:240,
   lemon:212, lime:200, lettuce:47, kale:67, shallot:160, garlicpowder:120,
-  onionpowder:115, sourcream:230, dijonmustard:240, celery:101, cucumber:104
+  onionpowder:115, sourcream:230, dijonmustard:240, celery:101, cucumber:104,
+ heavycream:238, halfandhalf:242, vanillaicecream:132, chocolateicecream:132, strawberryicecream:132,
+ coffee:240, espresso:240, drinkingsyrup:320, vanillasyrup:320, caramelsyrup:320, strawberrysyrup:320, chocolatesyrup:320,
+ oreo:100, chipsahoy:100, teriyaki:255, cranberries:100, freshbasil:24, sparklingwater:240, soda:240, dietsoda:240,
+ orangejuice:248, applejuice:248, pineapplejuice:250, cranberryjuice:250, grapejuice:250, lemonade:245, limeade:245,
+ fruitpunch:245, mangojuice:250, peachnectar:250, coconutwater:240, coconutmilk:240, gingerale:240, lemonlimesoda:240,
+ tonicwater:240, sweettea:240, unsweettea:240, grenadine:320, whippedcream:60,
+ frozenstrawberry:150, frozenblueberry:145, frozenraspberry:125, frozenblackberry:140, frozenmango:165,
+ frozenpeach:155, frozenpineapple:165, frozenmixedberries:145
+
 };
 function amountToGrams(id,amount,unit){
  if(unit==="g") return amount;
@@ -497,12 +586,12 @@ $("analyzeMethod").addEventListener("click",()=>{
 const plateTargets={veg:150,fruit:100,grain:75,protein:85};
 const plateColors={veg:'#4b9865',fruit:'#d96f55',grain:'#d7a84b',protein:'#528bb4'};
 const foodGroups={
- veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned','pumpkinpuree','russetpotato','parsley','fennel','chives','lettuce','kale','shallot','celery','cucumber'],
- fruit:['apple','banana','mango','pineapple','peach','strawberry','blueberry','blackberry','raspberry','lemon','lime'],
+ veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned','pumpkinpuree','russetpotato','parsley','freshbasil','fennel','chives','lettuce','kale','shallot','celery','cucumber'],
+ fruit:['apple','banana','mango','pineapple','peach','strawberry','blueberry','blackberry','raspberry','lemon','lime','cranberries','frozenstrawberry','frozenblueberry','frozenraspberry','frozenblackberry','frozenmango','frozenpeach','frozenpineapple','frozenmixedberries','orangejuice','applejuice','pineapplejuice','grapejuice','mangojuice'],
  grain:['oats','bread','whitebread','hamburgerbun','rice','pasta','flour','breadcrumbs','wonton','wholewheatflour','tortilla'],
  protein:['chicken','egg','scrambledegg','groundbeef','groundturkey','sausage','shrimp','beans','chickpeas','almonds','walnuts','sunflowerseeds','chiaseeds','flaxseeds','pecans','peanuts','peanutbutter','yogurt','plainyogurt','cottagecheese','cheddar','mozzarella','parmesan']
 };
-const dairyFoods=['milk','wholemilk','yogurt','plainyogurt','cheddar','mozzarella','parmesan','cottagecheese','creamcheese','sourcream'];
+const dairyFoods=['milk','wholemilk','yogurt','plainyogurt','cheddar','mozzarella','parmesan','cottagecheese','creamcheese','sourcream','heavycream','halfandhalf','vanillaicecream','chocolateicecream','strawberryicecream'];
 const milkAlternativeFoods=['almondmilk','oatmilk'];
 let mealDishes=[];
 const plateGroupNames={veg:'Vegetables',fruit:'Fruit',grain:'Grains',protein:'Protein foods'};
