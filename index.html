@@ -407,6 +407,26 @@ Object.assign(foods,{
  bacon:{n:"Bacon (cooked)",k:541,p:37,c:1.4,f:42,fi:0,s:0,na:1717}
 });
 
+// New ingredients requested for the November classroom update.
+// Generic estimates per 100 g; exact values vary by recipe and brand.
+Object.assign(foods,{
+ whitevinegar:{n:"White vinegar",k:18,p:0,c:.04,f:0,fi:0,s:0,na:2},
+ cilantro:{n:"Cilantro (fresh)",k:23,p:2.1,c:3.7,f:.5,fi:2.8,s:.9,na:46},
+ italianseasoning:{n:"Italian seasoning",k:270,p:10,c:55,f:7,fi:30,s:2,na:40},
+ cornsyrup:{n:"Corn syrup",k:286,p:0,c:77.6,f:0,fi:0,s:27,na: 2},
+ eggwhite:{n:"Egg white",k:52,p:10.9,c:.7,f:.2,fi:0,s:.7,na:166},
+ eggyolk:{n:"Egg yolk",k:322,p:15.9,c:3.6,f:26.5,fi:0,s:.6,na:48},
+ caramelsauce:{n:"Caramel sauce",k:300,p:2,c:67,f:4,fi:0,s:55,na:250},
+ glutenfreecakemix:{n:"Gluten-free cake mix (dry)",k:390,p:2.5,c:90,f:2.5,fi:2,s:45,na:550},
+ pancakemix:{n:"Pancake mix (dry)",k:370,p:8,c:78,f:3,fi:2,s:18,na:900},
+ andouillesausage:{n:"Andouille sausage",k:300,p:16,c:2,f:25,fi:0,s:1,na:1100},
+ horseradish:{n:"Horseradish (prepared)",k:48,p:1.2,c:11,f:.7,fi:3.3,s:7.9,na:420},
+ worcestershire:{n:"Worcestershire sauce",k:78,p:0,c:19,f:0,fi:0,s:10,na:980},
+ tabasco:{n:"Tabasco sauce",k:12,p:.8,c:1.6,f:.4,fi:.5,s:.6,na:2400},
+ granola:{n:"Granola",k:471,p:10,c:64,f:20,fi:7,s:20,na:200},
+ coconut:{n:"Coconut flakes (unsweetened)",k:660,p:6.9,c:23.7,f:64.5,fi:16.3,s:7.4,na:37}
+});
+
 // Selected micronutrient estimates per 100 g. These are generic food-composition
 // references; product fortification and brand formulations can change values.
 // Fields: vitamin A (mcg RAE), C (mg), D (mcg), E (mg), K (mcg),
@@ -555,7 +575,12 @@ Object.assign(micronutrientProfiles,{
  dates:{a:7,c:0,d:0,e:.1,k:2.7,ca:39,fe:1,po:656,mg:43,zn:.3},
  grapes:{a:3,c:3.2,d:0,e:.2,k:14.6,ca:10,fe:.4,po:191,mg:7,zn:.1},
  hummus:{a:2,c:0,d:0,e:.9,k:3,ca:38,fe:2.4,po:176,mg:71,zn:1.8},
- bacon:{a:11,c:0,d:.5,e:.3,k:0,ca:11,fe:.4,po:231,mg:23,zn:2.2}
+ bacon:{a:11,c:0,d:.5,e:.3,k:0,ca:11,fe:.4,po:231,mg:23,zn:2.2},
+ eggwhite:{a:0,c:0,d:0,e:0,k:0,ca:7,fe:.08,po:163,mg:11,zn:.03},
+ eggyolk:{a:381,c:0,d:5.4,e:2.6,k:.7,ca:129,fe:2.7,po:390,mg:5,zn:2.3},
+ cilantro:{a:337,c:27,k:310,ca:67,fe:1.8,po:521,mg:26,zn:.5,e:2.5,d:0},
+ coconut:{a:0,c:1.5,d:0,e:.24,k:0,ca:14,fe:2.4,po:356,mg:32,zn:1.1},
+ granola:{a:0,c:0,d:0,e:3,k:5,ca:50,fe:3.5,po:300,mg:100,zn:2}
 });
 
 Object.entries(micronutrientProfiles).forEach(([id,mi])=>{if(foods[id])foods[id].mi=mi;});
@@ -596,7 +621,10 @@ Object.assign(gramsPerCup,{
  deliham:140,deliturkey:140,summersausage:135,brie:135,gouda:130,provolone:132,bluecheese:135,
  feta:150,goatcheese:140,greenolives:135,blackolives:135,artichokehearts:170,sundriedtomatoes:55,
  driedapricots:130,driedfigs:150,dates:147,grapes:151,crackers:100,pretzels:90,hummus:246,
- pesto:240,figjam:320,apricotpreserves:320,balsamicglaze:320,bacon:65
+ pesto:240,figjam:320,apricotpreserves:320,balsamicglaze:320,bacon:65,
+ whitevinegar:240,cilantro:16,italianseasoning:30,cornsyrup:340,eggwhite:243,eggyolk:243,
+ caramelsauce:320,glutenfreecakemix:120,pancakemix:120,andouillesausage:140,
+ horseradish:240,worcestershire:240,tabasco:240,granola:120,coconut:80
 });
 
 function amountToGrams(id,amount,unit){
@@ -674,10 +702,10 @@ $("analyzeMethod").addEventListener("click",()=>{
 const plateTargets={veg:150,fruit:100,grain:75,protein:85};
 const plateColors={veg:'#4b9865',fruit:'#d96f55',grain:'#d7a84b',protein:'#528bb4'};
 const foodGroups={
- veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned','pumpkinpuree','russetpotato','parsley','freshbasil','fennel','chives','lettuce','kale','shallot','celery','cucumber','brusselssprouts','salsa','marinara','arugula','greenolives','blackolives','artichokehearts','sundriedtomatoes'],
+ veg:['broccoli','spinach','carrot','tomato','cabbage','zucchini','greenonion','corn','jalapeno','greenpepper','onion','garlic','tomatoescanned','pumpkinpuree','russetpotato','parsley','freshbasil','cilantro','fennel','chives','lettuce','kale','shallot','celery','cucumber','brusselssprouts','salsa','marinara','arugula','greenolives','blackolives','artichokehearts','sundriedtomatoes'],
  fruit:['apple','banana','mango','pineapple','peach','strawberry','blueberry','blackberry','raspberry','lemon','lime','cranberries','frozenstrawberry','frozenblueberry','frozenraspberry','frozenblackberry','frozenmango','frozenpeach','frozenpineapple','frozenmixedberries','orangejuice','applejuice','pineapplejuice','grapejuice','mangojuice','driedapricots','driedfigs','dates','grapes'],
- grain:['oats','bread','whitebread','hamburgerbun','rice','pasta','flour','breadcrumbs','wonton','wholewheatflour','tortilla','corntortillachips','crackers','pretzels'],
- protein:['chicken','egg','scrambledegg','groundbeef','groundturkey','sausage','shrimp','beans','chickpeas','almonds','walnuts','sunflowerseeds','chiaseeds','flaxseeds','pecans','peanuts','peanutbutter','yogurt','plainyogurt','cottagecheese','cheddar','mozzarella','parmesan','swisscheese','brie','gouda','provolone','bluecheese','feta','goatcheese','salmon','cod','tuna','salami','pepperoni','prosciutto','deliham','deliturkey','summersausage','bacon','hummus']
+ grain:['oats','bread','whitebread','hamburgerbun','rice','pasta','flour','breadcrumbs','wonton','wholewheatflour','glutenfreecakemix','pancakemix','granola','tortilla','corntortillachips','crackers','pretzels'],
+ protein:['chicken','egg','scrambledegg','groundbeef','groundturkey','sausage','shrimp','beans','chickpeas','almonds','walnuts','sunflowerseeds','chiaseeds','flaxseeds','pecans','peanuts','peanutbutter','yogurt','plainyogurt','cottagecheese','cheddar','mozzarella','parmesan','swisscheese','brie','gouda','provolone','bluecheese','feta','goatcheese','salmon','cod','tuna','eggwhite','eggyolk','andouillesausage','salami','pepperoni','prosciutto','deliham','deliturkey','summersausage','bacon','hummus']
 };
 const dairyFoods=['milk','wholemilk','yogurt','plainyogurt','cheddar','mozzarella','parmesan','cottagecheese','creamcheese','sourcream','heavycream','halfandhalf','vanillaicecream','chocolateicecream','strawberryicecream','swisscheese','brie','gouda','provolone','bluecheese','feta','goatcheese'];
 const milkAlternativeFoods=['almondmilk','oatmilk'];
